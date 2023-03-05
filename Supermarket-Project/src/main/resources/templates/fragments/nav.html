@@ -13,24 +13,20 @@
                     <a th:href="@{/products-details}" class="nav-item nav-link">Product Detail</a>
                     <a th:href="@{/cart}" class="nav-item nav-link">Cart</a>
                     <a th:href="@{/checkout}" class="nav-item nav-link">Checkout</a>
-                    <a th:href="@{/my-account}" class="nav-item nav-link">My Account</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
-                        <div class="dropdown-menu">
-                            <a href="wishlist.html" class="dropdown-item">Wishlist</a>
-                            <a href="login.html" class="dropdown-item">Login & Register</a>
-                            <a href="contact.html" class="dropdown-item">Contact Us</a>
-                        </div>
-                    </div>
+                    <a th:href="@{/wishlist}" class="nav-item nav-link">Wishlist</a>
                 </div>
                 <div class="navbar-nav ml-auto">
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Login</a>
-                            <a href="#" class="dropdown-item">Register</a>
-                        </div>
-                    </div>
+<!--                    <div class="nav-item dropdown">-->
+<!--                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>-->
+<!--                        <div class="dropdown-menu">-->
+<!--                            <a th:href="@{/login}" class="dropdown-item">Login</a>-->
+<!--                            <a th:href="@{/register}" class="dropdown-item">Register</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <a th:href="@{/my-account}" class="nav-item nav-link">My Account</a>
+                    <a th:href="@{/login}" class="nav-item nav-link">Login</a>
+                    <a th:href="@{/register}" class="nav-item nav-link">Register</a>
+                    <a th:href="@{/contact}" class="nav-item nav-link">Contact Us</a>
                 </div>
             </div>
         </nav>

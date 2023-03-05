@@ -2394,3 +2394,13 @@ h2 {
         text-align: center; 
     } 
 }
+
+.registration_form {
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 700;
+    text-align: center;
+    font-size: 45px;
+    background-color: #f1f1f1;
+    padding: 10px;
+}
+

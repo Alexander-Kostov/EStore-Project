@@ -41,6 +41,25 @@ public class ProductsController {
         return "my-account";
     }
 
+    @GetMapping("/login")
+    public String login() {
+
+        return "anotherlogin";
+    }
+
+    @GetMapping("/contact")
+    public String contact() {
+
+        return "contact";
+    }
+
+    @GetMapping("/wishlist")
+    public String wishlist() {
+
+        return "wishlist";
+    }
+
+
 
 }
 
