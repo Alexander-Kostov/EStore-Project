@@ -44,7 +44,13 @@ public class ProductsController {
     @GetMapping("/login")
     public String login() {
 
-        return "anotherlogin";
+        return "login";
+    }
+
+    @GetMapping("/register")
+    public String register() {
+
+        return "register";
     }
 
     @GetMapping("/contact")

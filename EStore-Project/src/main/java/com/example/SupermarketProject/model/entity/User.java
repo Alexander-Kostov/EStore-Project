@@ -11,15 +11,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String username;
-
-    private String email;
-
     private String password;
+    private String email;
+    private String address;
+    private int mobileNumber;
 
     @OneToMany
-    private List<Product> basket;
+    private List<Product> orders;
 
     public Long getId() {
         return id;
@@ -57,12 +56,30 @@ public class User {
         return this;
     }
 
-    public List<Product> getBasket() {
-        return basket;
+    public List<Product> getOrders() {
+        return orders;
     }
 
-    public User setBasket(List<Product> basket) {
-        this.basket = basket;
+    public User setOrders(List<Product> basket) {
+        this.orders = basket;
+        return this;
+    }
+
+    public int getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public User setMobileNumber(int mobileNumber) {
+        this.mobileNumber = mobileNumber;
+        return this;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public User setAddress(String address) {
+        this.address = address;
         return this;
     }
 }

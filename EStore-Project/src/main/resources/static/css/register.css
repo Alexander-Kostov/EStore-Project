@@ -82,24 +82,7 @@ h2::before {
     margin-left: 8px;
 }
 
-.box .forgot_password {
-    margin-top: 20px;
-    display: inline-block;
-    transition: 0.2s;
-}
-
-.box .forgot_password a {
-    color: #000;
-    font-size: 18px;
-    text-decoration: none;
-}
-
-.box .forgot_password:hover {
-    text-decoration: underline;
-    text-underline-position: under;
-}
-
-.box .login_button {
+.box .signup_button {
     width: 100%;
     background: linear-gradient(45deg ,#875cff, #ff66d7);
     border: none;
@@ -112,7 +95,7 @@ h2::before {
     transition: 0.2s;
 }
 
-.box .login_button:active {
+.box .signup_button:active {
     transform: scale3d(0.9, 0.9, 0.9);
 }
 
