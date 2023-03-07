@@ -15,32 +15,85 @@
     <div class="container">
         <div class="box">
             <h2>Register</h2>
+
             <form th:method="post" th:action="@{/register}" th:object="${registerDTO}">
                 <div class="input_box">
-                    <input type="text" class="name" required>
+                    <input th:field="*{firstName}" type="text" class="name" required>
                     <label>First Name</label>
                 </div>
 
                 <div class="input_box">
-                    <input type="text" class="name" required>
-                    <label>Last Name</label>
+                    <small class="invalid-message" th:if="${#fields.hasErrors('firstName')}">
+                        First Name is invalid
+                    </small>
                 </div>
 
                 <div class="input_box">
-                    <input type="text" class="password" required>
+                    <input id="lastName" th:field="*{lastName}" type="text" class="name" required>
+                    <label for="lastName"> Last Name</label>
+                </div>
+
+                <div class="input_box">
+                    <small class="invalid-message" th:if="${#fields.hasErrors('lastName')}">
+                        Last name error message
+                    </small>
+                </div>
+
+                <div class="input_box">
+                    <input th:field="*{password}" type="password" class="password" required>
                     <label>Password</label>
-                    <div class="password_checkbox"> <input type="checkbox"> <p>Show Password</p></div>
                 </div>
 
                 <div class="input_box">
-                    <input type="text" class="name" required>
+                    <small class="invalid-message" th:if="${#fields.hasErrors('password')}">
+                        Invalid password
+                    </small>
+                </div>
+
+                <div class="input_box">
+                    <input th:field="*{password}" type="password" class="password" required>
+                    <label>Confirm Password</label>
+                </div>
+
+                <div class="input_box">
+                    <small class="invalid-message" th:if="${#fields.hasErrors('password')}">
+                        Invalid Confirm password
+                    </small>
+                </div>
+
+                <div class="input_box">
+                    <input th:field="*{email}" type="text" class="name" required>
                     <label>Email</label>
                 </div>
 
                 <div class="input_box">
-                    <input type="text" class="name" required>
-                    <label>Address</label>
+                    <small class="invalid-message" th:if="${#fields.hasErrors('email')}">
+                       Invalid email
+                    </small>
                 </div>
+
+                <div class="input_box">
+                    <input id="address" th:field="*{address}" type="text" class="name" required>
+                    <label for="address">Address</label>
+                </div>
+
+                <div class="input_box">
+                    <small class="invalid-message" th:if="${#fields.hasErrors('address')}">
+                        Invalid address
+                    </small>
+                </div>
+
+                <div class="input_box">
+                    <input id="mobile" th:field="*{mobileNumber}" type="text" class="name" required>
+                    <label for="address">Mobile Number</label>
+                </div>
+
+                <div class="input_box">
+                    <small class="invalid-message" th:if="${#fields.hasErrors('mobileNumber')}">
+                        Invalid mobile number
+                    </small>
+                </div>
+
 
                 <button class="signup_button" type="submit">Create Account</button>
 
@@ -50,6 +103,7 @@
             </form>
             </div>
         </div>
+
 
 </body>
 
