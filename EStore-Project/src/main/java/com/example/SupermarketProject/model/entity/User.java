@@ -11,11 +11,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
+
+    private String firstName;
+
+    private String lastName;
     private String password;
     private String email;
     private String address;
-    private int mobileNumber;
+    private String mobileNumber;
 
     @OneToMany
     private List<Product> orders;
@@ -29,12 +32,21 @@ public class User {
         return this;
     }
 
-    public String getUsername() {
-        return username;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public User setUsername(String username) {
-        this.username = username;
+    public User setFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public User setLastName(String lastName) {
+        this.lastName = lastName;
         return this;
     }
 
@@ -65,11 +77,11 @@ public class User {
         return this;
     }
 
-    public int getMobileNumber() {
+    public String getMobileNumber() {
         return mobileNumber;
     }
 
-    public User setMobileNumber(int mobileNumber) {
+    public User setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
         return this;
     }

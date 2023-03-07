@@ -44,7 +44,7 @@ h2::before {
     position: relative;
 }
 
-.box .input_box input[type="text"] {
+.box .input_box input {
     width: 100%;
     font-size: 26px;
     margin: 16px 0px;
@@ -76,10 +76,6 @@ h2::before {
     display: flex;
     justify-content: flex-end;
 
-}
-
-.box .input_box .password_checkbox p {
-    margin-left: 8px;
 }
 
 .box .signup_button {
@@ -115,3 +111,30 @@ h2::before {
     text-decoration: underline;
     text-underline-position: under;
 }
+
+.input_box .invalid-message {
+    margin-bottom: 16px;
+    display: inline-block;
+    color: red;
+    font-size: 18px;
+    font-weight: 700;
+    font-style: italic;
+    font-family: helvetic sans-serif;
+}
+
+/*.input_box .invalid-email {*/
+/*    margin-bottom: 16px;*/
+/*    padding: 1px;*/
+/*    display: inline-block;*/
+/*    color: white;*/
+/*    background-color: red;*/
+/*    opacity: 0.7%;*/
+/*    border-radius: 4px;*/
+/*    font-size: 18px;*/
+/*    font-weight: 700;*/
+/*    font-style: italic;*/
+/*    font-family: helvetic sans-serif;*/
+/*}*/
+
+
+

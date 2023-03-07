@@ -15,7 +15,7 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     username: 'root'
     password: 'root1234'
-    url: jdbc:mysql://localhost:3306/supermaket?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/EStore?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
 logging:
   level:
     org:
