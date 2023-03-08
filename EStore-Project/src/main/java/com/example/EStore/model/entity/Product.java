@@ -1,4 +1,4 @@
-package com.example.SupermarketProject.model.entity;
+package com.example.EStore.model.entity;
 
 import jakarta.persistence.*;
 

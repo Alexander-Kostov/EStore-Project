@@ -1,8 +1,8 @@
-package com.example.SupermarketProject.web;
+package com.example.EStore.web;
 
-import com.example.SupermarketProject.mapper.UserMapper;
-import com.example.SupermarketProject.model.dto.RegisterDTO;
-import com.example.SupermarketProject.service.AuthService;
+import com.example.EStore.mapper.UserMapper;
+import com.example.EStore.model.dto.RegisterDTO;
+import com.example.EStore.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -43,12 +43,27 @@ public class AuthController{
     @PostMapping("/register")
     public String register(@Valid RegisterDTO registerDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         System.out.println();
-        if(bindingResult.hasErrors() || !this.authService.register(registerDTO)){
+        if(bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("registerDTO", registerDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerDTO", bindingResult);
 
             return "redirect:/register";
         }
+
+        if(this.authService.checkForExistingEmail(registerDTO.getEmail())) {
+            redirectAttributes.addFlashAttribute("registerDTO", registerDTO);
+            redirectAttributes.addFlashAttribute("emailUsed", true);
+
+            return "redirect:/register";
+        }
+
+        if(!this.authService.register(registerDTO)) {
+            redirectAttributes.addFlashAttribute("registerDTO", registerDTO);
+            redirectAttributes.addFlashAttribute("passwordsDoNotMatch", true);
+
+            return "redirect:/register";
+        }
+
 
         return "redirect:/login";
     }

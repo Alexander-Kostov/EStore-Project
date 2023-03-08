@@ -1,6 +1,6 @@
-package com.example.SupermarketProject.repository;
+package com.example.EStore.repository;
 
-import com.example.SupermarketProject.model.entity.User;
+import com.example.EStore.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

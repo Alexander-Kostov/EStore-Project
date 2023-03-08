@@ -23,8 +23,7 @@
                 </div>
 
                 <div class="input_box">
-                    <small class="invalid-message" th:if="${#fields.hasErrors('firstName')}">
-                        First Name is invalid
+                    <small class="invalid-message" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
                     </small>
                 </div>
 
@@ -34,31 +33,32 @@
                 </div>
 
                 <div class="input_box">
-                    <small class="invalid-message" th:if="${#fields.hasErrors('lastName')}">
-                        Last name error message
+                    <small class="invalid-message" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
                     </small>
                 </div>
 
                 <div class="input_box">
-                    <input th:field="*{password}" type="password" class="password" required>
-                    <label>Password</label>
+                    <input th:field="*{password}" id="password" name="password" type="password" class="password" required>
+                    <label for="password">Password</label>
                 </div>
 
                 <div class="input_box">
-                    <small class="invalid-message" th:if="${#fields.hasErrors('password')}">
-                        Invalid password
+                    <small class="invalid-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
                     </small>
                 </div>
 
                 <div class="input_box">
-                    <input th:field="*{password}" type="password" class="password" required>
-                    <label>Confirm Password</label>
+                    <input th:field="*{confirmPassword}" id="confirmPassword" name="confirmPassword" type="password" class="password" required>
+                    <label for="confirmPassword">Confirm Password</label>
                 </div>
 
                 <div class="input_box">
-                    <small class="invalid-message" th:if="${#fields.hasErrors('password')}">
+                    <small class="invalid-message"  th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">
                         Invalid Confirm password
                     </small>
+
+                    <small th:if="${passwordsDoNotMatch}" class="invalid-message">Passwords do not match</small>
+
                 </div>
 
                 <div class="input_box">
@@ -67,9 +67,8 @@
                 </div>
 
                 <div class="input_box">
-                    <small class="invalid-message" th:if="${#fields.hasErrors('email')}">
-                       Invalid email
-                    </small>
+                    <small class="invalid-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+                    <small th:if="${emailUsed}" class="invalid-message">Email already used</small>
                 </div>
 
                 <div class="input_box">
@@ -78,19 +77,17 @@
                 </div>
 
                 <div class="input_box">
-                    <small class="invalid-message" th:if="${#fields.hasErrors('address')}">
-                        Invalid address
+                    <small class="invalid-message"  th:if="${#fields.hasErrors('address')}" th:errors="*{address}">
                     </small>
                 </div>
 
                 <div class="input_box">
-                    <input id="mobile" th:field="*{mobileNumber}" type="text" class="name" required>
+                    <input id="mobile" th:field="*{mobileNumber}" type="text" class="name" pattern="^[\+]?\d{10,15}$" required>
                     <label for="address">Mobile Number</label>
                 </div>
 
                 <div class="input_box">
-                    <small class="invalid-message" th:if="${#fields.hasErrors('mobileNumber')}">
-                        Invalid mobile number
+                    <small class="invalid-message"  th:if="${#fields.hasErrors('mobileNumber')}" th:errors="*{mobileNumber}">
                     </small>
                 </div>
 

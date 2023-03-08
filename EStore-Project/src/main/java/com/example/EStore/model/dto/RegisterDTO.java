@@ -1,8 +1,7 @@
-package com.example.SupermarketProject.model.dto;
+package com.example.EStore.model.dto;
 
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -10,20 +9,26 @@ public class RegisterDTO {
 
     private Long id;
 
-    @Size(min = 2)
+    @Size(min = 2, max = 20, message = "First Name should be between 2 and 20 symbols")
+    @NotBlank
     private String firstName;
-    @Size(min = 2)
+    @Size(min = 2, max = 20, message = "Last Name should be between 2 and 20 symbols")
     private String lastName;
     @NotBlank
-    @Size(min = 2)
+    @Size(min = 2, max = 20, message = "Password should be at least 10 symbols long")
     private String password;
 
-    @Email
+    @NotBlank
+    @Size(min = 2, max = 20, message = "Password should be at least 10 symbols long")
+    private String confirmPassword;
+
+
+    @Email(message = "Please insert a valid email", regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
     @NotBlank
     private String email;
 
     @NotBlank
-    @Size(min = 2)
+    @Size(min = 2, max = 30, message = "Please insert a valid email address")
     private String address;
 
     @Size(min = 10)
@@ -47,6 +52,15 @@ public class RegisterDTO {
 
     public RegisterDTO setPassword(String password) {
         this.password = password;
+        return this;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public RegisterDTO setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
         return this;
     }
 
