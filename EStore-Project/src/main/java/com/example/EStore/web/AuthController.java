@@ -1,6 +1,7 @@
 package com.example.EStore.web;
 
 import com.example.EStore.mapper.UserMapper;
+import com.example.EStore.model.dto.LoginDTO;
 import com.example.EStore.model.dto.RegisterDTO;
 import com.example.EStore.service.AuthService;
 import jakarta.validation.Valid;
@@ -26,6 +27,11 @@ public class AuthController{
     @ModelAttribute("registerDTO")
     public RegisterDTO registerDTO(){
         return new RegisterDTO();
+    }
+
+    @ModelAttribute("loginDTO")
+    public LoginDTO loginDTO(){
+        return new LoginDTO();
     }
 
     @GetMapping("/login")
@@ -66,6 +72,26 @@ public class AuthController{
 
 
         return "redirect:/login";
+    }
+
+    @PostMapping("/login")
+    public String login(@Valid LoginDTO loginDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+
+        if(bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute("loginDTO", loginDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.loginDTO", bindingResult);
+
+            return "redirect:/login";
+        }
+
+        if(!this.authService.login(loginDTO)){
+            redirectAttributes.addFlashAttribute("loginDTO", loginDTO);
+            redirectAttributes.addFlashAttribute("badCredentials", true);
+
+            return "redirect:/login";
+        }
+
+        return "redirect:/";
     }
 
 

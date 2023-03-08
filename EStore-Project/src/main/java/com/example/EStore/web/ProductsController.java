@@ -1,4 +1,4 @@
-package com.example.SupermarketProject.web;
+package com.example.EStore.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +8,7 @@ public class ProductsController {
 
     @GetMapping("/home")
     public String home() {
-        return "redirect:/";
+        return "index";
     }
 
     @GetMapping("/products")

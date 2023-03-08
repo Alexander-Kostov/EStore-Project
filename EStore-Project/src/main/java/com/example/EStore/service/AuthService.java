@@ -1,6 +1,7 @@
 package com.example.EStore.service;
 
 import com.example.EStore.mapper.UserMapper;
+import com.example.EStore.model.dto.LoginDTO;
 import com.example.EStore.model.dto.RegisterDTO;
 import com.example.EStore.model.entity.User;
 import com.example.EStore.repository.UserRepository;
@@ -36,6 +37,16 @@ public class AuthService {
 
         User user = this.userMapper.dtoTOUser(registerDTO);
         this.userRepository.save(user);
+
+        return true;
+    }
+
+    public boolean login(LoginDTO loginDTO) {
+        Optional<User> byEmailAndPassword = this.userRepository.findByEmailAndPassword(loginDTO.getEmail(), loginDTO.getPassword());
+
+        if(byEmailAndPassword.isEmpty()) {
+            return false;
+        }
 
         return true;
     }

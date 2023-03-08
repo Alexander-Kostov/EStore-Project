@@ -44,7 +44,7 @@ h2::before {
     position: relative;
 }
 
-.box .input_box input[type="text"] {
+.box .input_box input {
     width: 100%;
     font-size: 26px;
     margin: 16px 0px;
@@ -131,4 +131,27 @@ h2::before {
 .box .login_link a:hover {
     text-decoration: underline;
     text-underline-position: under;
+}
+
+.input_box .invalid-message {
+    margin-bottom: 16px;
+    display: inline-block;
+    color: red;
+    font-size: 18px;
+    font-weight: 700;
+    font-style: italic;
+    font-family: helvetic sans-serif;
+}
+
+.input_box .badCredentials {
+    margin-bottom: 16px;
+    display: inline-block;
+    color: red;
+    font-size: 23px;
+    font-weight: 700;
+    font-style: italic;
+    font-family: helvetic sans-serif;
+    margin-left: 23px;
+    padding-top: 3px;
+    padding-bottom: 4px;
 }

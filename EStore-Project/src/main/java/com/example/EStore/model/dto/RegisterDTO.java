@@ -15,11 +15,11 @@ public class RegisterDTO {
     @Size(min = 2, max = 20, message = "Last Name should be between 2 and 20 symbols")
     private String lastName;
     @NotBlank
-    @Size(min = 2, max = 20, message = "Password should be at least 10 symbols long")
+    @Size(min = 5, max = 20, message = "Password should be at least 5 symbols long")
     private String password;
 
     @NotBlank
-    @Size(min = 2, max = 20, message = "Password should be at least 10 symbols long")
+    @Size(min = 5, max = 20, message = "Password should be at least 5 symbols long")
     private String confirmPassword;
 
 
