@@ -2,6 +2,7 @@ package com.example.EStore.model.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,6 +23,9 @@ public class User {
 
     @OneToMany
     private List<Product> orders;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<UserRoleEntity> roles = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -92,6 +96,15 @@ public class User {
 
     public User setAddress(String address) {
         this.address = address;
+        return this;
+    }
+
+    public List<UserRoleEntity> getRoles() {
+        return roles;
+    }
+
+    public User setRoles(List<UserRoleEntity> roles) {
+        this.roles = roles;
         return this;
     }
 }
