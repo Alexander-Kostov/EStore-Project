@@ -16,6 +16,7 @@ spring:
     username: 'root'
     password: 'root1234'
     url: jdbc:mysql://localhost:3306/EStore?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+
 logging:
   level:
     org:
@@ -27,3 +28,7 @@ logging:
     blog: WARN
 server:
   port: 8080
+
+app:
+ default:
+  password: topsecret

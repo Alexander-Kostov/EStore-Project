@@ -40,7 +40,8 @@
         <!-- Top bar End -->
         
         <!-- Nav Bar Start -->
-        <span th:replace="fragments/nav.html"></span>
+<!--        <span th:replace="fragments/nav.html"></span>-->
+        <th:block th:insert="/fragments/nav.html"> </th:block>
         <!-- Nav Bar End -->      
         
         <!-- Bottom Bar Start -->
@@ -61,7 +62,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="user">
+                        <div class="userEntity">
                             <a href="wishlist.html" class="btn wishlist">
                                 <i class="fa fa-heart"></i>
                                 <span>(0)</span>

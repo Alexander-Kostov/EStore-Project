@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ public class User {
         return id;
     }
 
-    public User setId(Long id) {
+    public UserEntity setId(Long id) {
         this.id = id;
         return this;
     }
@@ -40,7 +40,7 @@ public class User {
         return firstName;
     }
 
-    public User setFirstName(String firstName) {
+    public UserEntity setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -49,7 +49,7 @@ public class User {
         return lastName;
     }
 
-    public User setLastName(String lastName) {
+    public UserEntity setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -58,7 +58,7 @@ public class User {
         return email;
     }
 
-    public User setEmail(String email) {
+    public UserEntity setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -67,7 +67,7 @@ public class User {
         return password;
     }
 
-    public User setPassword(String password) {
+    public UserEntity setPassword(String password) {
         this.password = password;
         return this;
     }
@@ -76,7 +76,7 @@ public class User {
         return orders;
     }
 
-    public User setOrders(List<Product> basket) {
+    public UserEntity setOrders(List<Product> basket) {
         this.orders = basket;
         return this;
     }
@@ -85,7 +85,7 @@ public class User {
         return mobileNumber;
     }
 
-    public User setMobileNumber(String mobileNumber) {
+    public UserEntity setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
         return this;
     }
@@ -94,7 +94,7 @@ public class User {
         return address;
     }
 
-    public User setAddress(String address) {
+    public UserEntity setAddress(String address) {
         this.address = address;
         return this;
     }
@@ -103,7 +103,7 @@ public class User {
         return roles;
     }
 
-    public User setRoles(List<UserRoleEntity> roles) {
+    public UserEntity setRoles(List<UserRoleEntity> roles) {
         this.roles = roles;
         return this;
     }

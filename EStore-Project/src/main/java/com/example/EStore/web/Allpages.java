@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ProductsController {
+public class Allpages {
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home() {
         return "index";
     }
@@ -51,6 +51,18 @@ public class ProductsController {
     public String wishlist() {
 
         return "wishlist";
+    }
+
+    @GetMapping("/admins")
+    public String adminsPage() {
+
+        return "admins";
+    }
+
+    @GetMapping("/moderators")
+    public String moderatorsPage() {
+
+        return "moderators";
     }
 
 

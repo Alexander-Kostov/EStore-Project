@@ -15,28 +15,25 @@
     <div class="container">
         <div class="box">
             <h2>Login</h2>
-            <form th:action="@{/login}" th:method="post" th:object="${loginDTO}">
+            <form th:action="@{/users/login}" th:method="post">
 
-                <div th:if="${badCredentials}" class="input_box">
-                    <small class="badCredentials">Incorrect username or password!</small>
-                </div>
                 <div class="input_box">
-                    <input th:field="*{email}" type="text" class="name" required>
-                    <label>Email</label>
+                    <input type="text" class="name" id="username" name="username" required>
+                    <label for="username">Username</label>
                 </div>
 
                 <div class="input_box">
-                    <small class="invalid-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                    <small class="invalid-message">
                     </small>
                 </div>
 
                 <div class="input_box">
-                    <input th:field="*{password}" type="password" class="password" required>
-                    <label>Password</label>
+                    <input id="password" name="password" type="password" class="password" required>
+                    <label for="password">Password</label>
                 </div>
 
                 <div class="input_box">
-                    <small class="invalid-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+                    <small class="invalid-message">
                     </small>
                 </div>
 

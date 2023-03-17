@@ -1,4 +1,4 @@
-<div class="nav">
+<div class="nav" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md bg-dark navbar-dark">
             <a href="#" class="navbar-brand">MENU</a>
@@ -24,9 +24,12 @@
 <!--                        </div>-->
 <!--                    </div>-->
                     <a th:href="@{/my-account}" class="nav-item nav-link">My Account</a>
-                    <a th:href="@{/login}" class="nav-item nav-link">Login</a>
-                    <a th:href="@{/register}" class="nav-item nav-link">Register</a>
+                    <a sec:authorize="!isAuthenticated()" th:href="@{/users/login}" class="nav-item nav-link">Login</a>
+                    <a sec:authorize="!isAuthenticated()" th:href="@{/register}" class="nav-item nav-link">Register</a>
                     <a th:href="@{/contact}" class="nav-item nav-link">Contact Us</a>
+                    <span sec:authorize="isAuthenticated()">
+                        <a th:href="@{/logout}" class="nav-item nav-link">Logout</a>
+                    </span>
                 </div>
             </div>
         </nav>

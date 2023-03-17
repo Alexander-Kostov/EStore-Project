@@ -1,13 +1,13 @@
 package com.example.EStore.repository;
 
-import com.example.EStore.model.entity.User;
+import com.example.EStore.model.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
-    Optional<User> findByEmail(String email);
+    Optional<UserEntity> findUserByEmail(String email);
 
-    Optional<User> findByEmailAndPassword(String Email, String password);
+    Optional<UserEntity> findByEmailAndPassword(String Email, String password);
 }
