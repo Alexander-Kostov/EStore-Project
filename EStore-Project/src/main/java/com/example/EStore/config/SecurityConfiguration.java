@@ -31,7 +31,8 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests().requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .requestMatchers("/", "/users/login", "/register", "/login-error").permitAll()
+                .requestMatchers("/", "/users/login", "/register", "/login-error",
+                        "/css/**", "/js/**", "/lib/**", "/img/**", "/error").permitAll()
                 .requestMatchers("/moderators").hasRole(UserRoleEnum.MODERATOR.name())
                 .requestMatchers("/admins").hasRole(UserRoleEnum.ADMIN.name())
                 .anyRequest().authenticated()
@@ -41,7 +42,7 @@ public class SecurityConfiguration {
                 .usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
                 .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
                 .defaultSuccessUrl("/", true)
-                .failureForwardUrl("/login-error");
+                .failureForwardUrl("/login-error").permitAll();
 
 
         return http.build();
