@@ -11,6 +11,11 @@ public class Allpages {
         return "index";
     }
 
+    @GetMapping("/home")
+    public String homePage() {
+        return "index";
+    }
+
     @GetMapping("/products")
     public String products() {
 
