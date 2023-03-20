@@ -13,7 +13,6 @@ public class LoginController {
     @GetMapping("/users/login")
     public String login() {
 
-
         return "login";
     }
 
@@ -24,9 +23,10 @@ public class LoginController {
             RedirectAttributes redirectAttributes) {
 
         redirectAttributes.addFlashAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY, username);
-        redirectAttributes.addFlashAttribute("bad_credentials", true);
+        redirectAttributes.addFlashAttribute("badCredentials", true);
 
         return "redirect:/users/login";
     }
+
 
 }

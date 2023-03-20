@@ -2404,3 +2404,27 @@ h2 {
     padding: 10px;
 }
 
+#logout-button {
+    color: #ffffff;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 0;
+    background-color: transparent;
+    display: inline-block;
+    border: 0;
+}
+
+#logout-button:hover {
+    color: #353535;
+    outline: none;
+    text-decoration: none;
+}
+
+#logout-button-myAccount {
+    display: inline-block;
+    border: 0;
+    background: transparent;
+    font-size: 16px;
+}
+
+

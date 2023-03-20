@@ -27,9 +27,12 @@
                     <a sec:authorize="!isAuthenticated()" th:href="@{/users/login}" class="nav-item nav-link">Login</a>
                     <a sec:authorize="!isAuthenticated()" th:href="@{/register}" class="nav-item nav-link">Register</a>
                     <a th:href="@{/contact}" class="nav-item nav-link">Contact Us</a>
-                    <span sec:authorize="isAuthenticated()">
-                        <a th:href="@{/logout}" class="nav-item nav-link">Logout</a>
-                    </span>
+                    <form th:method="post" th:action="@{/users/logout}">
+                        <span sec:authorize="isAuthenticated()">
+<!--                          <a href="/users/logout" class="nav-item nav-link" type="submit">Logout</a>-->
+                            <input id="logout-button" type="submit" value="Logout" class="nav-item nav-link">
+                        </span>
+                    </form>
                 </div>
             </div>
         </nav>
