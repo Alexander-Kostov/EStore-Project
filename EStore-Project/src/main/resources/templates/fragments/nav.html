@@ -25,7 +25,7 @@
 <!--                    </div>-->
                     <a th:href="@{/my-account}" class="nav-item nav-link">My Account</a>
                     <a sec:authorize="!isAuthenticated()" th:href="@{/users/login}" class="nav-item nav-link">Login</a>
-                    <a sec:authorize="!isAuthenticated()" th:href="@{/register}" class="nav-item nav-link">Register</a>
+                    <a sec:authorize="!isAuthenticated()" th:href="@{/users/register}" class="nav-item nav-link">Register</a>
                     <a th:href="@{/contact}" class="nav-item nav-link">Contact Us</a>
                     <form th:method="post" th:action="@{/users/logout}">
                         <span sec:authorize="isAuthenticated()">

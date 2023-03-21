@@ -1,4 +1,4 @@
-package com.example.EStore.model.dto.enums;
+package com.example.EStore.model.enums;
 
 public enum UserRoleEnum {
     ADMIN,
