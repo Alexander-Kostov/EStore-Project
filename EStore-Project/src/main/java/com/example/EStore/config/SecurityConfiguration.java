@@ -1,6 +1,6 @@
 package com.example.EStore.config;
 
-import com.example.EStore.model.dto.enums.UserRoleEnum;
+import com.example.EStore.model.enums.UserRoleEnum;
 import com.example.EStore.repository.UserRepository;
 import com.example.EStore.service.ApplicationUserDetailsService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -12,6 +12,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.context.DelegatingSecurityContextRepository;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextRepository;
 
 @Configuration
 public class SecurityConfiguration {
@@ -28,10 +32,10 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, SecurityContextRepository securityContextRepository) throws Exception {
 
         http.authorizeHttpRequests().requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .requestMatchers("/", "/users/login", "/register", "/users/login-error",
+                .requestMatchers("/", "/users/login", "/users/register", "/users/login-error",
                         "/css/**", "/js/**", "/lib/**", "/img/**", "/error").permitAll()
                 .requestMatchers("/moderators").hasRole(UserRoleEnum.MODERATOR.name())
                 .requestMatchers("/admins").hasRole(UserRoleEnum.ADMIN.name())
@@ -43,7 +47,11 @@ public class SecurityConfiguration {
                 .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
                 .defaultSuccessUrl("/")
                 .failureForwardUrl("/users/login-error")
-                .and().logout().logoutUrl("/users/logout").logoutSuccessUrl("/").invalidateHttpSession(true);
+                .and().logout().logoutUrl("/users/logout").logoutSuccessUrl("/")
+                .deleteCookies("JSESSIONID")
+                .clearAuthentication(true)
+                .and().securityContext().securityContextRepository(securityContextRepository);
+//                .invalidateHttpSession(true);
 
 
         return http.build();
@@ -53,5 +61,13 @@ public class SecurityConfiguration {
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepository) {
         return new ApplicationUserDetailsService(userRepository);
+    }
+
+    @Bean
+    public SecurityContextRepository securityContextRepository(){
+        return new DelegatingSecurityContextRepository(
+                new RequestAttributeSecurityContextRepository(),
+                new HttpSessionSecurityContextRepository()
+        );
     }
 }

@@ -1,5 +1,6 @@
 package com.example.EStore.service;
 
+import com.example.EStore.model.AppUserDetails;
 import com.example.EStore.model.entity.UserEntity;
 import com.example.EStore.model.entity.UserRoleEntity;
 import com.example.EStore.repository.UserRepository;
@@ -28,11 +29,16 @@ public class ApplicationUserDetailsService implements UserDetailsService {
 
 
     public UserDetails mapToUserDetails(UserEntity userEntity){
-       return new User(
+       return new AppUserDetails(
                 userEntity.getEmail(),
                 userEntity.getPassword(),
                 extractAuthorities(userEntity)
-        );
+        ).setFirstName(userEntity.getFirstName())
+               .setLastName(userEntity.getLastName())
+               .setMobileNumber(userEntity.getMobileNumber())
+               .setAddress(userEntity.getAddress());
+
+
     }
 
     private List<GrantedAuthority> extractAuthorities(UserEntity userEntity) {

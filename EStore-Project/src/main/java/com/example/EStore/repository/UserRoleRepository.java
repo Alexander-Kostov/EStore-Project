@@ -1,6 +1,6 @@
 package com.example.EStore.repository;
 
-import com.example.EStore.model.dto.enums.UserRoleEnum;
+import com.example.EStore.model.enums.UserRoleEnum;
 import com.example.EStore.model.entity.UserRoleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 

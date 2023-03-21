@@ -1,6 +1,6 @@
 package com.example.EStore.model.entity;
 
-import com.example.EStore.model.dto.enums.UserRoleEnum;
+import com.example.EStore.model.enums.UserRoleEnum;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,6 +12,7 @@ public class UserRoleEntity {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private UserRoleEnum role;
 
     public Long getId() {

@@ -1,6 +1,6 @@
 package com.example.EStore.service;
 
-import com.example.EStore.model.dto.enums.UserRoleEnum;
+import com.example.EStore.model.enums.UserRoleEnum;
 import com.example.EStore.model.entity.UserEntity;
 import com.example.EStore.model.entity.UserRoleEntity;
 import com.example.EStore.repository.UserRepository;

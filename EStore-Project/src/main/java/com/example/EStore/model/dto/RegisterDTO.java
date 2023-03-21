@@ -23,8 +23,8 @@ public class RegisterDTO {
     private String confirmPassword;
 
 
-    @Email(message = "Please insert a valid email", regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
-    @NotBlank
+//    @Email(message = "Please insert a valid email", regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
+//    @NotBlank
     private String email;
 
     @NotBlank
