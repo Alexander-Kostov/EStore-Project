@@ -22,7 +22,7 @@ public class UserEntity {
     private String mobileNumber;
 
     @OneToMany
-    private List<Product> orders;
+    private List<ProductEntity> orders;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRoleEntity> roles = new ArrayList<>();
@@ -72,11 +72,11 @@ public class UserEntity {
         return this;
     }
 
-    public List<Product> getOrders() {
+    public List<ProductEntity> getOrders() {
         return orders;
     }
 
-    public UserEntity setOrders(List<Product> basket) {
+    public UserEntity setOrders(List<ProductEntity> basket) {
         this.orders = basket;
         return this;
     }

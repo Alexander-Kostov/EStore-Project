@@ -18,11 +18,14 @@ public class InitService {
     private UserRoleRepository userRoleRepository;
     private UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private String defaultPassword;
 
-    public InitService(UserRoleRepository userRoleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder, @Value("${app.default.password}") String defaultPassword) {
+    public InitService(UserRoleRepository userRoleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder,
+                       @Value("${app.admin.defaultpass}") String defaultPassword) {
         this.userRoleRepository = userRoleRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.defaultPassword = defaultPassword;
     }
 
     @PostConstruct
@@ -54,7 +57,7 @@ public class InitService {
                 .setEmail("admin@example.com")
                 .setFirstName("Admin")
                 .setLastName("Adminov")
-                .setPassword(passwordEncoder.encode("topsecret"))
+                .setPassword(passwordEncoder.encode(defaultPassword))
                 .setMobileNumber("+359874479102")
                 .setRoles(userRoleRepository.findAll());
 

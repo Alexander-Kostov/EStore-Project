@@ -59,17 +59,6 @@ public class Allpages {
         return "wishlist";
     }
 
-    @GetMapping("/admins")
-    public String adminsPage() {
-
-        return "admins";
-    }
-
-    @GetMapping("/moderators")
-    public String moderatorsPage() {
-
-        return "moderators";
-    }
 
 
 

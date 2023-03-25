@@ -27,6 +27,7 @@
                     <a sec:authorize="!isAuthenticated()" th:href="@{/users/login}" class="nav-item nav-link">Login</a>
                     <a sec:authorize="!isAuthenticated()" th:href="@{/users/register}" class="nav-item nav-link">Register</a>
                     <a th:href="@{/contact}" class="nav-item nav-link">Contact Us</a>
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/add-product}" class="nav-item nav-link">Add Product</a>
                     <form th:method="post" th:action="@{/users/logout}">
                         <span sec:authorize="isAuthenticated()">
 <!--                          <a href="/users/logout" class="nav-item nav-link" type="submit">Logout</a>-->
