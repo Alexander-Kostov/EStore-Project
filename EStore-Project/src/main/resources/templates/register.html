@@ -16,97 +16,106 @@
         <div class="box">
             <h2>Register</h2>
 
-            <form th:method="post" th:action="@{/users/register}">
+            <form th:method="post" th:action="@{/users/register}" th:object="${registerDTO}">
                 <div class="input_box">
-                    <input type="text"
+                    <input  th:field="*{firstName}"
+                            type="text"
                            name="firstName"
                            class="name" required>
-                    <label>First Name</label>
+                    <label >First Name</label>
                 </div>
 <!--                 Validations: -->
-<!--                <div class="input_box">-->
-<!--                    <small class="invalid-message" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">-->
-<!--                    </small>-->
-<!--                </div>-->
+                <span class="input_box">
+                    <small class="invalid-message" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+                    </small>
+                </span>
 
                 <div class="input_box">
                     <input id="lastName"
+                           th:field="*{lastName}"
                            name="lastName"
                            type="text" class="name" required>
                     <label for="lastName"> Last Name</label>
                 </div>
 
 <!--                Validations:-->
-<!--                <div class="input_box">-->
-<!--                    <small class="invalid-message" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">-->
-<!--                    </small>-->
-<!--                </div>-->
+                <div class="input_box">
+                    <small class="invalid-message" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
+                    </small>
+                </div>
 
                 <div class="input_box">
                     <input id="password"
+                           th:field="*{password}"
                            name="password"
                            type="password" class="password" required>
                     <label for="password">Password</label>
                 </div>
 
 <!--                Validations: -->
-<!--                <div class="input_box">-->
-<!--                    <small class="invalid-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">-->
-<!--                    </small>-->
-<!--                </div>-->
+                <div class="input_box">
+                    <small class="invalid-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+                    </small>
+                </div>
 
                 <div class="input_box">
-                    <input id="confirmPassword" type="password" class="password" required>
+                    <input  id="confirmPassword"
+                            th:field="*{confirmPassword}"
+                            type="password"
+                            class="password" required>
                     <label for="confirmPassword">Confirm Password</label>
                 </div>
 
 <!--                Validations-->
-<!--                <div class="input_box">-->
-<!--                    <small class="invalid-message"  th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">-->
-<!--                        Invalid Confirm password-->
-<!--                    </small>-->
+                <div class="input_box">
+                    <small class="invalid-message"  th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">
+                        Invalid Confirm password
+                    </small>
 
-<!--                    <small th:if="${passwordsDoNotMatch}" class="invalid-message">Passwords do not match</small>-->
+                    <small th:if="${passwordsDoNotMatch}" class="invalid-message">Passwords do not match</small>
 
-<!--                </div>-->
+                </div>
 
                 <div class="input_box">
                     <input type="text"
+                           th:field="*{email}"
                            name="email"
                            class="name" required>
                     <label>Email</label>
                 </div>
 
 <!--                Validations:-->
-<!--                <div class="input_box">-->
-<!--                    <small class="invalid-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>-->
-<!--                    <small th:if="${emailUsed}" class="invalid-message">Email already used</small>-->
-<!--                </div>-->
+                <div class="input_box">
+                    <small class="invalid-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+                    <small th:if="${emailUsed}" class="invalid-message">Email already used</small>
+                </div>
 
                 <div class="input_box">
                     <input id="address"
+                           th:field="*{address}"
                            name="address"
                            type="text" class="name" required>
                     <label for="address">Address</label>
                 </div>
 
 <!--                Validations:-->
-<!--                <div class="input_box">-->
-<!--                    <small class="invalid-message"  th:if="${#fields.hasErrors('address')}" th:errors="*{address}">-->
-<!--                    </small>-->
-<!--                </div>-->
+                <div class="input_box">
+                    <small class="invalid-message"  th:if="${#fields.hasErrors('address')}" th:errors="*{address}">
+                    </small>
+                </div>
 
                 <div class="input_box">
                     <input id="mobile"
+                           th:field="*{mobileNumber}"
                            name="mobileNumber"
                            type="text" class="name" pattern="^[\+]?\d{10,15}$" required>
-                    <label for="address">Mobile Number</label>
+                    <label for="mobile">Mobile Number</label>
                 </div>
 
-<!--                <div class="input_box">-->
-<!--                    <small class="invalid-message"  th:if="${#fields.hasErrors('mobileNumber')}" th:errors="*{mobileNumber}">-->
-<!--                    </small>-->
-<!--                </div>-->
+                <div class="input_box">
+                    <small class="invalid-message"  th:if="${#fields.hasErrors('mobileNumber')}" th:errors="*{mobileNumber}">
+                    </small>
+                </div>
 
 
                 <button class="signup_button" type="submit">Create Account</button>

@@ -19,6 +19,7 @@ import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 @Service
@@ -58,5 +59,12 @@ public class UserService {
 
         successfulLoginProcessor.accept(authentication);
 
+    }
+
+    public boolean checkForUsedEmail(String email) {
+
+        Optional<UserEntity> userByEmail = this.userRepository.findUserByEmail(email);
+
+        return userByEmail.isPresent();
     }
 }

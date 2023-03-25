@@ -20,9 +20,9 @@
             <form th:action="@{/users/login}" th:method="post">
 
                 <div class="input_box">
-                    <input
+                    <input  class="input_box"
                             th:value="${username}"
-                            type="text" class="name" id="username" name="username" required>
+                            type="text" id="username" name="username" required>
                     <label for="username">Username</label>
                 </div>
 
@@ -46,7 +46,7 @@
                 <button class="login_button" type="submit">Login</button>
 
                 <div class="login_link">
-                    <a href="/register">Don't have an Account ?</a>
+                    <a th:href="@{/users/register}">Don't have an Account ?</a>
                 </div>
             </form>
         </div>

@@ -51,6 +51,7 @@ h2::before {
     outline: none;
     border-width: 0px 0px 2px 0px;
     border-color: #cd7acd;
+    background-color: white;
 }
 
 .box .input_box label {
