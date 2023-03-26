@@ -5,7 +5,7 @@
 
 .container {
     width: 100%;
-    height: 100vh;
+    height: 120vh;
     position: relative;
     background: linear-gradient(45deg , rgb(135 129 255) , rgb(255 110 110));
 
@@ -157,7 +157,7 @@ input.file {
 }
 
 #upload-image {
-font-size: 18px;
+    font-size: 18px;
 }
 
 #uploading-date{
@@ -165,7 +165,86 @@ font-size: 18px;
     color: #0000009e;
 }
 
+/*#size {*/
+/*    position: absolute;*/
+/*    padding-left: -1px;*/
+/*    margin-left: 51px;*/
+/*    margin-top: 4px;*/
+/*    width: 300px;*/
+/*    font-size: 20px;*/
+/*}*/
 
+/*#size-label {*/
+/*    position: static;*/
+/*    padding-left: 3px;*/
+/*    margin-left: -3px;*/
+/*    margin-top: 7px;*/
+/*    margin-bottom: 16px;*/
+/*    overflow: visible;*/
+/*}*/
+
+.box .input_box select {
+    width: 100%;
+    font-size: 26px;
+    margin: 16px 0px;
+    outline: none;
+    border-width: 0px 0px 2px 0px;
+    border-color: #cd7acd;
+}
+
+#gender-label {
+    margin-top: -27px;
+    font-size: 21px;
+    color: rgba(110, 69, 9, 0.881);
+}
+
+#type-label {
+    margin-top: -27px;
+    font-size: 21px;
+    color: rgba(110, 69, 9, 0.881);
+}
+
+#size-label {
+    margin-top: -27px;
+    font-size: 21px;
+    color: rgba(110, 69, 9, 0.881);
+}
+
+/*#gender {*/
+/*    position: absolute;*/
+/*    padding-left: -1px;*/
+/*    margin-left: 51px;*/
+/*    margin-top: 4px;*/
+/*    width: 300px;*/
+/*    font-size: 20px;*/
+/*}*/
+
+/*#gender-label {*/
+/*    position: static;*/
+/*    padding-left: 3px;*/
+/*    margin-left: -3px;*/
+/*    margin-top: 7px;*/
+/*    margin-bottom: 16px;*/
+/*    overflow: visible;*/
+/*}*/
+
+/*#type {*/
+/*    position: absolute;*/
+/*    padding-left: -1px;*/
+/*    margin-left: 51px;*/
+/*    margin-top: 4px;*/
+/*    width: 300px;*/
+/*    font-size: 20px;*/
+/*}*/
+
+/*#type-label {*/
+/*    position: static;*/
+/*    padding-left: 3px;*/
+/*    margin-left: -3px;*/
+/*    margin-top: 7px;*/
+/*    margin-bottom: 16px;*/
+/*    overflow: visible;*/
+/*}*/
 
 
 
