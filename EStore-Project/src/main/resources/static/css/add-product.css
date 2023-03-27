@@ -185,7 +185,7 @@ input.file {
 
 .box .input_box select {
     width: 100%;
-    font-size: 26px;
+    font-size: 20px;
     margin: 16px 0px;
     outline: none;
     border-width: 0px 0px 2px 0px;
@@ -196,18 +196,21 @@ input.file {
     margin-top: -27px;
     font-size: 21px;
     color: rgba(110, 69, 9, 0.881);
+    margin-left: 1px;
 }
 
 #type-label {
     margin-top: -27px;
     font-size: 21px;
     color: rgba(110, 69, 9, 0.881);
+    margin-left: 1px;
 }
 
 #size-label {
     margin-top: -27px;
     font-size: 21px;
     color: rgba(110, 69, 9, 0.881);
+    margin-left: 1px;
 }
 
 /*#gender {*/
