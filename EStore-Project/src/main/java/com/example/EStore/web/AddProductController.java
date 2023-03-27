@@ -27,12 +27,13 @@ public class AddProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/add-product")
+    @GetMapping("/product-add")
     public String addProduct(Model model) {
 
         if (!model.containsAttribute("addProductDTO")) {
             model.addAttribute("addProductDTO", new AddProductDTO());
         }
+
         return "product-add";
     }
 
@@ -40,12 +41,23 @@ public class AddProductController {
     public String addProduct(@Valid AddProductDTO addProductDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes,
                              Principal principal) throws IOException {
 
-        ProductEntity productEntity = new ProductEntity();
-        productEntity.setName(addProductDTO.getName())
-                .setColour(addProductDTO.getColour())
-                .setAvailable(true);
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("addProductDTO", addProductDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addProductDTO", bindingResult);
 
-        this.productService.createProduct(productEntity, addProductDTO.getImage());
+            return "redirect:product-add";
+        }
+
+        if (addProductDTO.getImage().isEmpty()) {
+            redirectAttributes.addFlashAttribute("addProductDTO", addProductDTO);
+            redirectAttributes.addFlashAttribute("emptyImage", true);
+
+            return "redirect:product-add";
+        }
+
+        this.productService.createProduct(addProductDTO);
+
+//        this.productService.createProduct(productEntity, addProductDTO.getImage());
 
 
 

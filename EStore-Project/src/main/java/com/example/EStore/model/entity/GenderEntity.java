@@ -4,7 +4,7 @@ import com.example.EStore.model.enums.GenderEntityEnum;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "gender")
+@Table(name = "product_gender")
 public class GenderEntity {
 
     @Id
@@ -13,7 +13,14 @@ public class GenderEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private GenderEntityEnum genderEntityEnum;
+    private GenderEntityEnum gender;
+
+    public GenderEntity() {
+    }
+
+    public GenderEntity(GenderEntityEnum gender) {
+        this.gender = gender;
+    }
 
     public long getId() {
         return id;
@@ -24,12 +31,12 @@ public class GenderEntity {
         return this;
     }
 
-    public GenderEntityEnum getGenderEntityEnum() {
-        return genderEntityEnum;
+    public GenderEntityEnum getGender() {
+        return gender;
     }
 
-    public GenderEntity setGenderEntityEnum(GenderEntityEnum genderEntityEnum) {
-        this.genderEntityEnum = genderEntityEnum;
+    public GenderEntity setGender(GenderEntityEnum genderEntityEnum) {
+        this.gender = genderEntityEnum;
         return this;
     }
 }

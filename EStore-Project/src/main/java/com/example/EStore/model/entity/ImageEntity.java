@@ -45,4 +45,13 @@ public class ImageEntity {
         this.url = url;
         return this;
     }
+
+    public ProductEntity getProduct() {
+        return product;
+    }
+
+    public ImageEntity setProduct(ProductEntity product) {
+        this.product = product;
+        return this;
+    }
 }

@@ -1,28 +1,37 @@
 package com.example.EStore.model.dto;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class AddProductDTO {
-
+    @Size(min = 2, max = 20, message = "Name must be between 2 and 20 symbols!")
     private String name;
-
+    @Size(min = 2, max = 50, message = "Description must be between 2 and 50 symbols!")
     private String description;
-
+    @NotNull(message = "You must put a colour!")
     private String colour;
-
-    private String size;
-
+    @Positive(message = "Price must be a positive number!")
+    @NotNull(message = "You must put a price!")
     private double price;
-
+    @NotNull(message = "You must select a size!")
+    private String size;
+    @Positive(message = "Quantity must be a positive number!")
+    private int quantity;
+    @NotNull(message = "You must select a gender!")
     private String gender;
-
+    @NotNull(message = "You must select a type!")
     private String type;
-
+    @PastOrPresent(message = "Uploaded date cannot be in the future!")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate uploadedAt;
-
+    @NotNull(message = "You must upload an image!")
     private MultipartFile image;
 
     public String getName() {
@@ -106,5 +115,12 @@ public class AddProductDTO {
         return this;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
 
+    public AddProductDTO setQuantity(int quantity) {
+        this.quantity = quantity;
+        return this;
+    }
 }

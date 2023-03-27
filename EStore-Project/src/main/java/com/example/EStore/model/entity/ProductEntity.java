@@ -4,7 +4,8 @@ import com.example.EStore.model.enums.ProductSize;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -20,13 +21,15 @@ public class ProductEntity {
 
     private ProductSize size;
 
-    private String imageUrl;
-
     private String description;
 
     private BigDecimal price;
 
-    private LocalDateTime expiryDate;
+    private int quantity;
+    @Column(name = "date_of_uploading")
+    private LocalDate dateOfUploading;
+
+    private boolean available;
 
     @ManyToOne
     private GenderEntity gender;
@@ -34,8 +37,8 @@ public class ProductEntity {
     @ManyToOne
     private ProductTypeEntity productType;
 
-
-
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ImageEntity> images;
 
     public Long getId() {
         return id;
@@ -91,21 +94,39 @@ public class ProductEntity {
         return this;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public List<ImageEntity> getImages() {
+        return images;
     }
 
-    public ProductEntity setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public ProductEntity setImages(List<ImageEntity> image) {
+        this.images = image;
         return this;
     }
 
-    public LocalDateTime getExpiryDate() {
-        return expiryDate;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public ProductEntity setExpiryDate(LocalDateTime expiryDate) {
-        this.expiryDate = expiryDate;
+    public ProductEntity setQuantity(int quantity) {
+        this.quantity = quantity;
+        return this;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public ProductEntity setAvailable(boolean available) {
+        this.available = available;
+        return this;
+    }
+
+    public LocalDate getDateOfUploading() {
+        return dateOfUploading;
+    }
+
+    public ProductEntity setDateOfUploading(LocalDate expiryDate) {
+        this.dateOfUploading = expiryDate;
         return this;
     }
 
@@ -126,4 +147,6 @@ public class ProductEntity {
         this.productType = productType;
         return this;
     }
+
+
 }
