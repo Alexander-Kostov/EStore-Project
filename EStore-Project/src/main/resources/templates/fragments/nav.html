@@ -11,9 +11,9 @@
                     <a th:href="@{/home}" class="nav-item nav-link">Home</a>
                     <a th:href="@{/products}" class="nav-item nav-link">Products</a>
                     <a th:href="@{/products-details}" class="nav-item nav-link">Product Detail</a>
-                    <a th:href="@{/cart}" class="nav-item nav-link">Cart</a>
-                    <a th:href="@{/checkout}" class="nav-item nav-link">Checkout</a>
-                    <a th:href="@{/wishlist}" class="nav-item nav-link">Wishlist</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/cart}" class="nav-item nav-link">Cart</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/checkout}" class="nav-item nav-link">Checkout</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/wishlist}" class="nav-item nav-link">Wishlist</a>
                 </div>
                 <div class="navbar-nav ml-auto">
 <!--                    <div class="nav-item dropdown">-->
@@ -23,11 +23,11 @@
 <!--                            <a th:href="@{/register}" class="dropdown-item">Register</a>-->
 <!--                        </div>-->
 <!--                    </div>-->
-                    <a th:href="@{/my-account}" class="nav-item nav-link">My Account</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/my-account}" class="nav-item nav-link">My Account</a>
                     <a sec:authorize="!isAuthenticated()" th:href="@{/users/login}" class="nav-item nav-link">Login</a>
                     <a sec:authorize="!isAuthenticated()" th:href="@{/users/register}" class="nav-item nav-link">Register</a>
-                    <a th:href="@{/contact}" class="nav-item nav-link">Contact Us</a>
-                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/add-product}" class="nav-item nav-link">Add Product</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/contact}" class="nav-item nav-link">Contact Us</a>
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/product-add}" class="nav-item nav-link">Add Product</a>
                     <form th:method="post" th:action="@{/users/logout}">
                         <span sec:authorize="isAuthenticated()">
 <!--                          <a href="/users/logout" class="nav-item nav-link" type="submit">Logout</a>-->

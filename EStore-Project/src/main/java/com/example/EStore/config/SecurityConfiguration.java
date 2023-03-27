@@ -35,10 +35,12 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, SecurityContextRepository securityContextRepository) throws Exception {
 
         http.authorizeHttpRequests().requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .requestMatchers("/", "/users/login", "/users/register", "/users/login-error",
-                        "/css/**", "/js/**", "/lib/**", "/img/**", "/error").permitAll()
-                .requestMatchers("/moderators").hasRole(UserRoleEnum.MODERATOR.name())
-                .requestMatchers("/admins").hasRole(UserRoleEnum.ADMIN.name())
+                .requestMatchers(
+                        "/css/**", "/js/**", "/lib/**", "/img/**", "/error", "/", "/home", "/products", "/products-details").permitAll()
+                .requestMatchers("/users/login", "/users/register", "/users/login-error")
+                .anonymous()
+                .requestMatchers("/product-add").hasRole(UserRoleEnum.MODERATOR.name())
+                .requestMatchers("/product-add").hasRole(UserRoleEnum.ADMIN.name())
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
