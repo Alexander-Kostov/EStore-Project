@@ -1,7 +1,6 @@
 package com.example.EStore.web;
 
 import com.example.EStore.model.dto.AddProductDTO;
-import com.example.EStore.model.entity.ProductEntity;
 import com.example.EStore.service.ImageService;
 import com.example.EStore.service.ProductService;
 import jakarta.validation.Valid;
@@ -48,7 +47,7 @@ public class AddProductController {
             return "redirect:product-add";
         }
 
-        if (addProductDTO.getImage().isEmpty()) {
+        if (addProductDTO.getImages().isEmpty()) {
             redirectAttributes.addFlashAttribute("addProductDTO", addProductDTO);
             redirectAttributes.addFlashAttribute("emptyImage", true);
 
@@ -56,8 +55,6 @@ public class AddProductController {
         }
 
         this.productService.createProduct(addProductDTO);
-
-//        this.productService.createProduct(productEntity, addProductDTO.getImage());
 
 
 

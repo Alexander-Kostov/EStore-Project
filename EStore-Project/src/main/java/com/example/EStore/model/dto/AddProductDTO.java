@@ -7,8 +7,8 @@ import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 public class AddProductDTO {
     @Size(min = 2, max = 20, message = "Name must be between 2 and 20 symbols!")
@@ -32,7 +32,7 @@ public class AddProductDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate uploadedAt;
     @NotNull(message = "You must upload an image!")
-    private MultipartFile image;
+    private List<MultipartFile> images;
 
     public String getName() {
         return name;
@@ -106,12 +106,12 @@ public class AddProductDTO {
         return this;
     }
 
-    public MultipartFile getImage() {
-        return image;
+    public List<MultipartFile> getImages() {
+        return images;
     }
 
-    public AddProductDTO setImage(MultipartFile image) {
-        this.image = image;
+    public AddProductDTO setImages(List<MultipartFile> images) {
+        this.images = images;
         return this;
     }
 

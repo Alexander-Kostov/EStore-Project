@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,16 +35,19 @@ public class ProductService {
         this.genderRepository = genderRepository;
         this.productTypeRepository = productTypeRepository;
     }
+
     public void createProduct(AddProductDTO addProductDTO) {
+        List<ImageEntity> allImages = new ArrayList<>();
 
+        for (MultipartFile image : addProductDTO.getImages()) {
+            String imageUrl = imageCloudService.saveImage(image);
+            ImageEntity imageEntity = new ImageEntity()
+                    .setTitle(image.getOriginalFilename())
+                    .setUrl(imageUrl);
 
-        MultipartFile image = addProductDTO.getImage();
+            allImages.add(imageEntity);
+        }
 
-        String imageUrl = imageCloudService.saveImage(image);
-
-        ImageEntity imageEntity = new ImageEntity();
-        imageEntity.setTitle(image.getOriginalFilename())
-                .setUrl(imageUrl);
 
         GenderEntityEnum genderEnum = switch (addProductDTO.getGender()) {
             case "M" -> GenderEntityEnum.MALE;
@@ -52,7 +56,7 @@ public class ProductService {
             default -> GenderEntityEnum.MALE;
         };
 
-       GenderEntity gender = this.genderRepository.findByGender(genderEnum);
+        GenderEntity gender = this.genderRepository.findByGender(genderEnum);
 
         ProductTypeEnum productEnum = switch (addProductDTO.getType()) {
             case "DRESS" -> ProductTypeEnum.DRESS;
@@ -85,10 +89,11 @@ public class ProductService {
                 .setGender(gender)
                 .setQuantity(addProductDTO.getQuantity())
                 .setDateOfUploading(addProductDTO.getUploadedAt())
-                .setImages(List.of(imageEntity));
+                .setImages(allImages);
 
-
-             imageEntity.setProduct(productEntity);
+        for (ImageEntity image : allImages) {
+            image.setProduct(productEntity);
+        }
 
         this.productRepository.save(productEntity);
     }
