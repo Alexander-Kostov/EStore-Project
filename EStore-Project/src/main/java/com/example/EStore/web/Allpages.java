@@ -17,11 +17,6 @@ public class Allpages {
         return "index";
     }
 
-    @GetMapping("/products")
-    public String products() {
-
-        return "product-list";
-    }
 
     @GetMapping("/products-details")
     public String productsDetail() {

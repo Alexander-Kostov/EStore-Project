@@ -13,6 +13,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class AddProductController {
@@ -33,6 +35,8 @@ public class AddProductController {
             model.addAttribute("addProductDTO", new AddProductDTO());
         }
 
+        model.addAttribute("predefinedSizes", productService.getAllSizes());
+
         return "product-add";
     }
 
@@ -47,9 +51,16 @@ public class AddProductController {
             return "redirect:product-add";
         }
 
-        if (addProductDTO.getImages().isEmpty()) {
+        if (addProductDTO.getImages().get(0).getOriginalFilename().equals("")) {
             redirectAttributes.addFlashAttribute("addProductDTO", addProductDTO);
             redirectAttributes.addFlashAttribute("emptyImage", true);
+
+            return "redirect:product-add";
+        }
+
+        if(addProductDTO.getSize().isEmpty()) {
+            redirectAttributes.addFlashAttribute("addProductDTO", addProductDTO);
+            redirectAttributes.addFlashAttribute("emptySize", true);
 
             return "redirect:product-add";
         }
@@ -60,4 +71,5 @@ public class AddProductController {
 
         return "redirect:/products";
     }
+
 }

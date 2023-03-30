@@ -43,7 +43,7 @@ public class ImageCloudService {
             throw new RuntimeException(e);
         }
 
-        return String.format("https://res.cloudinary.com/dxx9gh1db/image/upload/v1678739665/" +
+        return String.format("https://res.cloudinary.com/dameipk4b/image/upload/v1678739665/" +
                 imageId + "." + getFileExtension(multipartFile.getOriginalFilename()));
     }
 

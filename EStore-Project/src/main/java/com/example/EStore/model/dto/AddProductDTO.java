@@ -13,7 +13,7 @@ import java.util.List;
 public class AddProductDTO {
     @Size(min = 2, max = 20, message = "Name must be between 2 and 20 symbols!")
     private String name;
-    @Size(min = 2, max = 50, message = "Description must be between 2 and 50 symbols!")
+    @Size(min = 2, max = 200, message = "Description must be between 2 and 200 symbols!")
     private String description;
     @NotNull(message = "You must put a colour!")
     private String colour;
@@ -21,7 +21,7 @@ public class AddProductDTO {
     @NotNull(message = "You must put a price!")
     private double price;
     @NotNull(message = "You must select a size!")
-    private String size;
+    private List<String> size;
     @Positive(message = "Quantity must be a positive number!")
     private int quantity;
     @NotNull(message = "You must select a gender!")
@@ -33,6 +33,9 @@ public class AddProductDTO {
     private LocalDate uploadedAt;
     @NotNull(message = "You must upload an image!")
     private List<MultipartFile> images;
+
+    @Size(min = 5, max = 100)
+    private String specifications;
 
     public String getName() {
         return name;
@@ -61,11 +64,11 @@ public class AddProductDTO {
         return this;
     }
 
-    public String getSize() {
+    public List<String> getSize() {
         return size;
     }
 
-    public AddProductDTO setSize(String size) {
+    public AddProductDTO setSize(List<String> size) {
         this.size = size;
         return this;
     }
@@ -94,6 +97,15 @@ public class AddProductDTO {
 
     public AddProductDTO setType(String type) {
         this.type = type;
+        return this;
+    }
+
+    public String getSpecifications() {
+        return specifications;
+    }
+
+    public AddProductDTO setSpecifications(String specifications) {
+        this.specifications = specifications;
         return this;
     }
 

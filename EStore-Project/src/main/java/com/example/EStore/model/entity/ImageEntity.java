@@ -16,7 +16,7 @@ public class ImageEntity {
     @Column(nullable = false)
     private String url;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private ProductEntity product;
 
     public long getId() {

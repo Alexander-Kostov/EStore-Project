@@ -5,7 +5,7 @@
 
 .container {
     width: 100%;
-    height: 120vh;
+    height: 130vh;
     position: relative;
     background: linear-gradient(45deg , rgb(135 129 255) , rgb(255 110 110));
 
@@ -51,6 +51,17 @@ h2::before {
     outline: none;
     border-width: 0px 0px 2px 0px;
     border-color: #cd7acd;
+}
+
+.box .input_box input.size_selection{
+    width: unset;
+    font-size: 22px;
+    margin: 16px 0px;
+    outline: none;
+    border-width: 0px 0px 2px 0px;
+    border-color: #cd7acd;
+    margin-left: 15px;
+    margin-right: 2px;
 }
 
 .box .input_box label {
@@ -212,43 +223,12 @@ input.file {
     color: rgba(110, 69, 9, 0.881);
     margin-left: 1px;
 }
-
-/*#gender {*/
-/*    position: absolute;*/
-/*    padding-left: -1px;*/
-/*    margin-left: 51px;*/
-/*    margin-top: 4px;*/
-/*    width: 300px;*/
-/*    font-size: 20px;*/
-/*}*/
-
-/*#gender-label {*/
-/*    position: static;*/
-/*    padding-left: 3px;*/
-/*    margin-left: -3px;*/
-/*    margin-top: 7px;*/
-/*    margin-bottom: 16px;*/
-/*    overflow: visible;*/
-/*}*/
-
-/*#type {*/
-/*    position: absolute;*/
-/*    padding-left: -1px;*/
-/*    margin-left: 51px;*/
-/*    margin-top: 4px;*/
-/*    width: 300px;*/
-/*    font-size: 20px;*/
-/*}*/
-
-/*#type-label {*/
-/*    position: static;*/
-/*    padding-left: 3px;*/
-/*    margin-left: -3px;*/
-/*    margin-top: 7px;*/
-/*    margin-bottom: 16px;*/
-/*    overflow: visible;*/
-/*}*/
-
+#size_selection_label {
+    margin-top: -27px;
+    font-size: 21px;
+    color: rgba(110, 69, 9, 0.881);
+    margin-left: 1px;
+}
 
 
 
