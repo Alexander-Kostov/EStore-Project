@@ -38,7 +38,7 @@
                type="text" class="name" required>
         <label for="description">Description</label>
       </div>
-      <!--                 Validations: -->
+
       <div class="input_box">
           <small class="invalid-message" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">
          </small>
@@ -54,6 +54,20 @@
 
       <div class="input_box">
         <small class="invalid-message" th:if="${#fields.hasErrors('colour')}" th:errors="*{colour}">
+        </small>
+      </div>
+
+      <div class="input_box">
+        <input type="text"
+               th:field="*{specifications}"
+               name="name"
+               class="name"
+               required>
+        <label>Specifications</label>
+      </div>
+
+      <div class="input_box">
+        <small class="invalid-message" th:if="${#fields.hasErrors('specifications')}" th:errors="*{specifications}">
         </small>
       </div>
 
@@ -114,23 +128,6 @@
 
 
       <div class="input_box">
-        <select name="size" id="size"
-                th:field="*{size}">
-          <option value="XS" selected>XS</option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-        </select>
-        <label id="size-label">Size:</label>
-      </div>
-
-      <div class="input_box">
-        <small class="invalid-message" th:if="${#fields.hasErrors('size')}" th:errors="*{size}">
-        </small>
-      </div>
-
-      <div class="input_box">
         <select name="type" id="type"
                 th:field="*{type}">
           <option value="DRESS" selected>Dress</option>
@@ -139,7 +136,7 @@
           <option value="SOCKS">Socks</option>
           <option value="T_SHIRT">T-Shirt</option>
         </select>
-        <label id="type-label">Type:</label>
+        <label for="type" id="type-label">Type:</label>
       </div>
 
       <div class="input_box">
@@ -147,6 +144,21 @@
         </small>
       </div>
 
+      <div class="input_box">
+
+        <label for="for-size" id="size_selection_label">Sizes:</label>
+          <input id="for-size" class="size_selection" type="checkbox" name="sizes"
+                 th:each="productSize : ${predefinedSizes}"
+                 th:text="${productSize.getProductSize().name()}"
+                 th:value="${productSize.getId()}"
+                 th:field="*{size}">
+      </div>
+
+      <div class="input_box">
+        <small class="invalid-message" th:if="${emptySize}">
+          You must select a size!
+        </small>
+      </div>
 
       <div class="input_box">
         <input type="file" id="upload-image" multiple="multiple" name="img" th:field="*{images}">
