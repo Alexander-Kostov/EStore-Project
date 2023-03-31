@@ -36,7 +36,8 @@ public class SecurityConfiguration {
 
         http.authorizeHttpRequests().requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .requestMatchers(
-                        "/css/**", "/js/**", "/lib/**", "/img/**", "/error", "/", "/home", "/products", "/products-details").permitAll()
+                        "/css/**", "/js/**", "/lib/**", "/img/**").permitAll()
+                .requestMatchers("/", "/home", "/products", "/error", "/products-details/**").permitAll()
                 .requestMatchers("/users/login", "/users/register", "/users/login-error")
                 .anonymous()
                 .requestMatchers("/product-add").hasRole(UserRoleEnum.MODERATOR.name())

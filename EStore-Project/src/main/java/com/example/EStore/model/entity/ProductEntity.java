@@ -19,8 +19,7 @@ public class ProductEntity {
 
     private String colour;
 
-    private ProductSize size;
-
+    private String specifications;
     private String description;
 
     private BigDecimal price;
@@ -34,10 +33,13 @@ public class ProductEntity {
     @ManyToOne
     private GenderEntity gender;
 
+    @ManyToMany(cascade = CascadeType.MERGE)
+    private List<ProductSizeEntity> sizes;
+
     @ManyToOne
     private ProductTypeEntity productType;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ImageEntity> images;
 
     public Long getId() {
@@ -76,6 +78,15 @@ public class ProductEntity {
         return this;
     }
 
+    public String getSpecifications() {
+        return specifications;
+    }
+
+    public ProductEntity setSpecifications(String specifications) {
+        this.specifications = specifications;
+        return this;
+    }
+
     public String getColour() {
         return colour;
     }
@@ -85,12 +96,12 @@ public class ProductEntity {
         return this;
     }
 
-    public ProductSize getSize() {
-        return size;
+    public List<ProductSizeEntity> getSizes() {
+        return sizes;
     }
 
-    public ProductEntity setSize(ProductSize size) {
-        this.size = size;
+    public ProductEntity setSizes(List<ProductSizeEntity> sizes) {
+        this.sizes = sizes;
         return this;
     }
 

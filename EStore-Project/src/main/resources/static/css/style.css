@@ -626,12 +626,13 @@ h2 {
 }
 
 .category .category-name p {
+    font-family: monospace;
     margin: 0 0 50px 0;
     padding: 15px;
     width: 100%;
     text-align: center;
     color: #ffffff;
-    font-size: 16px;
+    font-size: 21px;
     transition: all 0.3s;
 }
 
@@ -2425,6 +2426,14 @@ h2 {
     border: 0;
     background: transparent;
     font-size: 16px;
+}
+
+.index_p_descriptions {
+    font-family: monospace;
+}
+
+.side-photo-title {
+    font-family: 'Source Code Pro', monospace;
 }
 
 

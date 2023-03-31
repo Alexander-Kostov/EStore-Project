@@ -1,11 +1,10 @@
 package com.example.EStore.service;
 
-import com.example.EStore.ProductTypeRepository.ProductTypeRepository;
+import com.example.EStore.model.entity.*;
+import com.example.EStore.repository.ProductSizeRepository;
+import com.example.EStore.repository.ProductTypeRepository;
 import com.example.EStore.model.dto.AddProductDTO;
-import com.example.EStore.model.entity.GenderEntity;
-import com.example.EStore.model.entity.ImageEntity;
-import com.example.EStore.model.entity.ProductEntity;
-import com.example.EStore.model.entity.ProductTypeEntity;
+import com.example.EStore.model.dto.ViewProductDTO;
 import com.example.EStore.model.enums.GenderEntityEnum;
 import com.example.EStore.model.enums.ProductSize;
 import com.example.EStore.model.enums.ProductTypeEnum;
@@ -17,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -28,12 +29,14 @@ public class ProductService {
     private GenderRepository genderRepository;
 
     private ProductTypeRepository productTypeRepository;
+    private ProductSizeRepository productSizeRepository;
 
-    public ProductService(ProductRepository productRepository, ImageCloudService imageCloudService, GenderRepository genderRepository, ProductTypeRepository productTypeRepository) {
+    public ProductService(ProductRepository productRepository, ImageCloudService imageCloudService, GenderRepository genderRepository, ProductTypeRepository productTypeRepository, ProductSizeRepository productentityRepository) {
         this.productRepository = productRepository;
         this.imageCloudService = imageCloudService;
         this.genderRepository = genderRepository;
         this.productTypeRepository = productTypeRepository;
+        this.productSizeRepository = productentityRepository;
     }
 
     public void createProduct(AddProductDTO addProductDTO) {
@@ -69,14 +72,23 @@ public class ProductService {
 
         ProductTypeEntity productType = this.productTypeRepository.findByProductType(productEnum);
 
-        ProductSize productSize = switch (addProductDTO.getSize()) {
-            case "XS" -> ProductSize.XS;
-            case "S" -> ProductSize.S;
-            case "M" -> ProductSize.M;
-            case "L" -> ProductSize.L;
-            case "XL" -> ProductSize.XL;
-            default -> throw new UnsupportedOperationException("Invalid size!");
-        };
+        List<ProductSizeEntity> productSizes = new ArrayList<>();
+
+        List<String> allSizesFromDTO = addProductDTO.getSize();
+
+        for (String currentSize : allSizesFromDTO) {
+          ProductSize size = switch (currentSize) {
+                case "1" -> ProductSize.XS;
+                case "2" -> ProductSize.S;
+                case "3" -> ProductSize.M;
+                case "4" -> ProductSize.L;
+                case "5" -> ProductSize.XL;
+              default -> throw new UnsupportedOperationException();
+            };
+
+            Optional<ProductSizeEntity> byProductSize = this.productSizeRepository.findByProductSize(size);
+            productSizes.add(byProductSize.get());
+        }
 
         ProductEntity productEntity = new ProductEntity()
                 .setName(addProductDTO.getName())
@@ -84,7 +96,8 @@ public class ProductService {
                 .setColour(addProductDTO.getColour())
                 .setDescription(addProductDTO.getDescription())
                 .setPrice(BigDecimal.valueOf(addProductDTO.getPrice()))
-                .setSize(productSize)
+                .setSizes(productSizes)
+                .setSpecifications(addProductDTO.getSpecifications())
                 .setProductType(productType)
                 .setGender(gender)
                 .setQuantity(addProductDTO.getQuantity())
@@ -97,4 +110,25 @@ public class ProductService {
 
         this.productRepository.save(productEntity);
     }
+
+    public List<ViewProductDTO> getAllProducts() {
+        return this.productRepository.findAll().stream().map(this::mapProductEntityToProductView).collect(Collectors.toList());
+    }
+
+    private ViewProductDTO mapProductEntityToProductView(ProductEntity productEntity) {
+        ViewProductDTO viewProductDTO = new ViewProductDTO();
+        viewProductDTO.setId(productEntity.getId());
+        viewProductDTO.setName(productEntity.getName());
+        viewProductDTO.setPrice(productEntity.getPrice().doubleValue())
+                .setThumbnailUrl(productEntity.getImages().get(0).getUrl());
+
+        System.out.println();
+
+        return viewProductDTO;
+    }
+
+    public List<ProductSizeEntity> getAllSizes() {
+        return this.productSizeRepository.findAll();
+    }
+
 }
