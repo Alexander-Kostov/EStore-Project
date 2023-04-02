@@ -33,7 +33,7 @@ public class ProductEntity {
     @ManyToOne
     private GenderEntity gender;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private List<ProductSizeEntity> sizes;
 
     @ManyToOne

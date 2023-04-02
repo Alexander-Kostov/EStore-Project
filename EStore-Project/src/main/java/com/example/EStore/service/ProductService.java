@@ -1,5 +1,6 @@
 package com.example.EStore.service;
 
+import com.example.EStore.model.dto.ProductDetailDTO;
 import com.example.EStore.model.entity.*;
 import com.example.EStore.repository.ProductSizeRepository;
 import com.example.EStore.repository.ProductTypeRepository;
@@ -10,6 +11,7 @@ import com.example.EStore.model.enums.ProductSize;
 import com.example.EStore.model.enums.ProductTypeEnum;
 import com.example.EStore.repository.GenderRepository;
 import com.example.EStore.repository.ProductRepository;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -115,20 +117,39 @@ public class ProductService {
         return this.productRepository.findAll().stream().map(this::mapProductEntityToProductView).collect(Collectors.toList());
     }
 
+    public List<ProductSizeEntity> getAllSizes() {
+        return this.productSizeRepository.findAll();
+    }
+
+    public ProductDetailDTO getProductById(Long id) {
+        Optional<ProductDetailDTO> productDetailDTO = this.productRepository.findById(id).map(this::mapProductEntityToProductDetailDTO);
+
+        return productDetailDTO.get();
+    }
+
+    private ProductDetailDTO mapProductEntityToProductDetailDTO(ProductEntity productEntity) {
+       ProductDetailDTO productDetailDTO = new ProductDetailDTO();
+
+       productDetailDTO.setId(productEntity.getId())
+               .setColour(productEntity.getColour())
+               .setName(productEntity.getName())
+               .setSpecifications(productEntity.getSpecifications())
+               .setPrice(productEntity.getPrice().doubleValue())
+               .setDescription(productEntity.getDescription())
+               .setSize(productEntity.getSizes().stream().map(size -> size.getProductSize().name()).collect(Collectors.toList()))
+               .setThumbnailUrls(productEntity.getImages().stream().map(ImageEntity::getUrl).collect(Collectors.toList()));
+
+        return productDetailDTO;
+    }
+
     private ViewProductDTO mapProductEntityToProductView(ProductEntity productEntity) {
         ViewProductDTO viewProductDTO = new ViewProductDTO();
         viewProductDTO.setId(productEntity.getId());
         viewProductDTO.setName(productEntity.getName());
         viewProductDTO.setPrice(productEntity.getPrice().doubleValue())
+                .setSpecifications(productEntity.getSpecifications())
                 .setThumbnailUrl(productEntity.getImages().get(0).getUrl());
-
-        System.out.println();
 
         return viewProductDTO;
     }
-
-    public List<ProductSizeEntity> getAllSizes() {
-        return this.productSizeRepository.findAll();
-    }
-
 }

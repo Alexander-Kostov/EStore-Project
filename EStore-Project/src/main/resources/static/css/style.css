@@ -2436,6 +2436,11 @@ h2 {
     font-family: 'Source Code Pro', monospace;
 }
 
-
+#input_for_quantity {
+    border: 2px black solid;
+    background-color: #FF6F61;
+    text-align: center;
+    width: 45px;
+}
 
 
