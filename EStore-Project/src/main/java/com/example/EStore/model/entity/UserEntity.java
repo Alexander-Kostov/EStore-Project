@@ -11,7 +11,7 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     private String firstName;
 
@@ -27,11 +27,11 @@ public class UserEntity {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRoleEntity> roles = new ArrayList<>();
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public UserEntity setId(Long id) {
+    public UserEntity setId(long id) {
         this.id = id;
         return this;
     }

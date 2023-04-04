@@ -1,6 +1,6 @@
-package com.example.EStore.model.dto;
+package com.example.EStore.model.views;
 
-public class ViewProductDTO {
+public class ProductView {
 
     private long id;
 
@@ -16,7 +16,7 @@ public class ViewProductDTO {
         return id;
     }
 
-    public ViewProductDTO setId(long id) {
+    public ProductView setId(long id) {
         this.id = id;
         return this;
     }
@@ -25,7 +25,7 @@ public class ViewProductDTO {
         return name;
     }
 
-    public ViewProductDTO setName(String name) {
+    public ProductView setName(String name) {
         this.name = name;
         return this;
     }
@@ -34,7 +34,7 @@ public class ViewProductDTO {
         return thumbnailUrl;
     }
 
-    public ViewProductDTO setThumbnailUrl(String thumbnailUrl) {
+    public ProductView setThumbnailUrl(String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
         return this;
     }
@@ -43,7 +43,7 @@ public class ViewProductDTO {
         return price;
     }
 
-    public ViewProductDTO setPrice(double price) {
+    public ProductView setPrice(double price) {
         this.price = price;
         return this;
     }
@@ -52,7 +52,7 @@ public class ViewProductDTO {
         return specifications;
     }
 
-    public ViewProductDTO setSpecifications(String specifications) {
+    public ProductView setSpecifications(String specifications) {
         this.specifications = specifications;
         return this;
     }

@@ -49,7 +49,7 @@ public class InitService {
     }
 
     private void initRoles() {
-        if (userRepository.count() == 0) {
+        if (userRoleRepository.count() == 0) {
             var moderatorRole = new UserRoleEntity().setRole(UserRoleEnum.MODERATOR);
             var adminRole = new UserRoleEntity().setRole(UserRoleEnum.ADMIN);
 

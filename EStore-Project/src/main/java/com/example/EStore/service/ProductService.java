@@ -5,13 +5,12 @@ import com.example.EStore.model.entity.*;
 import com.example.EStore.repository.ProductSizeRepository;
 import com.example.EStore.repository.ProductTypeRepository;
 import com.example.EStore.model.dto.AddProductDTO;
-import com.example.EStore.model.dto.ViewProductDTO;
+import com.example.EStore.model.views.ProductView;
 import com.example.EStore.model.enums.GenderEntityEnum;
 import com.example.EStore.model.enums.ProductSize;
 import com.example.EStore.model.enums.ProductTypeEnum;
 import com.example.EStore.repository.GenderRepository;
 import com.example.EStore.repository.ProductRepository;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -113,7 +112,7 @@ public class ProductService {
         this.productRepository.save(productEntity);
     }
 
-    public List<ViewProductDTO> getAllProducts() {
+    public List<ProductView> getAllProducts() {
         return this.productRepository.findAll().stream().map(this::mapProductEntityToProductView).collect(Collectors.toList());
     }
 
@@ -121,7 +120,7 @@ public class ProductService {
         return this.productSizeRepository.findAll();
     }
 
-    public ProductDetailDTO getProductById(Long id) {
+    public ProductDetailDTO getProductDetailDTO(Long id) {
         Optional<ProductDetailDTO> productDetailDTO = this.productRepository.findById(id).map(this::mapProductEntityToProductDetailDTO);
 
         return productDetailDTO.get();
@@ -142,14 +141,18 @@ public class ProductService {
         return productDetailDTO;
     }
 
-    private ViewProductDTO mapProductEntityToProductView(ProductEntity productEntity) {
-        ViewProductDTO viewProductDTO = new ViewProductDTO();
-        viewProductDTO.setId(productEntity.getId());
-        viewProductDTO.setName(productEntity.getName());
-        viewProductDTO.setPrice(productEntity.getPrice().doubleValue())
+    private ProductView mapProductEntityToProductView(ProductEntity productEntity) {
+        ProductView productView = new ProductView();
+        productView.setId(productEntity.getId());
+        productView.setName(productEntity.getName());
+        productView.setPrice(productEntity.getPrice().doubleValue())
                 .setSpecifications(productEntity.getSpecifications())
                 .setThumbnailUrl(productEntity.getImages().get(0).getUrl());
 
-        return viewProductDTO;
+        return productView;
+    }
+
+    public ProductEntity getProductById(Long productId) {
+        return this.productRepository.findById(productId).get();
     }
 }

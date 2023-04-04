@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -7,6 +8,11 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="eCommerce HTML Template Free Download" name="keywords">
     <meta content="eCommerce HTML Template Free Download" name="description">
+    <meta
+            id="csrf"
+            type="hidden"
+            th:name="${_csrf.headerName}"
+            th:value="${_csrf.token}" />
 
     <!-- Favicon -->
     <link href="/img/favicon.ico" rel="icon">
@@ -64,13 +70,15 @@
 <!-- Breadcrumb End -->
 
 <!-- Product Detail Start -->
-<form th:action="@{/cart/product}" th:object="${productDetailDTO}" th:method="post">
+
 <div class="product-detail">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8">
-                <div class="product-detail-top">
+                <form th:action="@{/cart/product}" th:object="${productDetailDTO}" th:method="post">
+                  <div class="product-detail-top">
                     <div class="row align-items-center">
+                        <input type="hidden" name="productId" id="productId" th:value="*{id}">
                         <div class="col-md-5">
                             <div class="product-slider-single normal-slider">
                                 <th:block th:each="picture : ${allPictures}">
@@ -80,7 +88,7 @@
                         </div>
                         <div class="col-md-7">
                             <div class="product-content">
-                                <div class="title"><h2 th:text="*{name}">NAme of the product</h2></div>
+                                <div class="title"><h2 th:text="${productDetailDTO.getName()}">NAme of the product</h2></div>
                                 <div class="ratting">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -89,35 +97,26 @@
                                     <i class="fa fa-star"></i>
                                 </div>
                                 <div class="price">
-                                    <h4>Price:</h4>
-                                    <p th:text="|${productDetailDTO.getPrice()}'$'|">$99<span></span></p>
+                                    <h4 id="price_for_product">Price:</h4>
+                                    <p><span th:utext="'$'" id="price_on_product_details"></span><span th:remove="tag" th:text="${#numbers.formatDecimal(productDetailDTO.getPrice(), 1, 'DEFAULT', 2, 'DEFAULT')}"></span></p>
                                 </div>
                                 <div class="quantity">
                                     <h4>Quantity:</h4>
                                     <div class="qty">
-<!--                                        <button type="button" class="btn-minus"><i class="fa fa-minus"></i></button>-->
-                                        <input id="input_for_quantity" type="number" name="quantity" min="1" max="5">
-<!--                                        <button type="button" class="btn-plus"><i class="fa fa-plus"></i></button>-->
+<!--                                        <input th:field="*{productQuantity}" id="input_for_quantity" type="number" name="quantity" min="1" max="5">-->
                                     </div>
                                 </div>
-                                <div class="p-size">
-                                    <h4>Size:</h4>
+                                <div class="p-size" id="p_size_for_product">
+                                    <h4 id="size_for_product">Size:</h4>
                                     <div th:each="size: ${allSizes}" class="btn-group btn-group-sm">
-                                        <button th:text="${size}" type="button" class="btn">XS</button>
-                                        <!--                                                <button type="button" class="btn">S</button>-->
-                                        <!--                                                <button type="button" class="btn">M</button>-->
-                                        <!--                                                <button type="button" class="btn">L</button>-->
-                                        <!--                                                <button type="button" class="btn">XL</button>-->
+
+<!--                                        <input th:field="*{productSize}" th:text="${size}" type="radio" th:value="${size}">-->
                                     </div>
                                 </div>
                                 <div class="p-color">
-                                    <h4>Color:</h4>
-                                    <div class="btn-group btn-group-sm">
-                                        <!--                                                <button type="button" class="btn">White</button>-->
-                                        <!--                                                <button type="button" class="btn">Blue</button>-->
-                                        <button th:text="${productDetailDTO.getColour()}" type="button" class="btn">
-                                            Black
-                                        </button>
+                                    <h4 id="colour_heading_for_product">Color:</h4>
+                                    <div id="input_for_product_colour" class="btn-group btn-group-sm">
+<!--                                        <input th:field="*{productColour}" th:text="${productDetailDTO.getColour()}" type="radio" th:value="${productDetailDTO.getColour()}">-->
                                     </div>
                                 </div>
                                 <div class="action">
@@ -128,7 +127,7 @@
                         </div>
                     </div>
                 </div>
-
+                </form>
                 <div class="row product-detail-bottom">
                     <div class="col-lg-12">
                         <ul class="nav nav-pills nav-justified">
@@ -139,7 +138,7 @@
                                 <a class="nav-link" data-toggle="pill" href="#specification">Specification</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#reviews">Reviews (1)</a>
+                                <a class="nav-link" data-toggle="pill" href="#reviews">Reviews</a>
                             </li>
                         </ul>
 
@@ -158,19 +157,7 @@
                                 </ul>
                             </div>
                             <div id="reviews" class="container tab-pane fade">
-                                <div class="reviews-submitted">
-                                    <div class="reviewer">Phasellus Gravida - <span>01 Jan 2020</span></div>
-                                    <div class="ratting">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <p>
-                                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                                        doloremque laudantium, totam rem aperiam.
-                                    </p>
+                                <div id="reviews-section" class="reviews-submitted">
                                 </div>
                                 <div class="reviews-submit">
                                     <h4>Give your Review:</h4>
@@ -181,20 +168,19 @@
                                         <i class="far fa-star"></i>
                                         <i class="far fa-star"></i>
                                     </div>
+                                    <form id="review-form" action="/" method="post">
                                     <div class="row form">
                                         <div class="col-sm-6">
-                                            <input type="text" placeholder="Name">
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input type="email" placeholder="Email">
+                                            <input id="username" type="text" placeholder="Name">
                                         </div>
                                         <div class="col-sm-12">
-                                            <textarea placeholder="Review"></textarea>
+                                            <textarea id="text-area" placeholder="Review"></textarea>
                                         </div>
                                         <div class="col-sm-12">
                                             <button>Submit</button>
                                         </div>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -492,7 +478,7 @@
         </div>
     </div>
 </div>
-</form>
+
 
 <!-- Product Detail End -->
 
@@ -608,6 +594,7 @@
 <script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js}"></script>
 <script src="/lib/easing/easing.min.js"></script>
 <script src="/lib/slick/slick.min.js"></script>
+<script th:src="@{/js/reviews.js}"></script>
 
 <!-- Template Javascript -->
 <script src="/js/main.js"></script>

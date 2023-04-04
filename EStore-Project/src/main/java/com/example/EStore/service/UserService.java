@@ -67,4 +67,8 @@ public class UserService {
 
         return userByEmail.isPresent();
     }
+
+    public UserEntity getUserByPrincipal(String email) {
+        return this.userRepository.findUserByEmail(email).get();
+    }
 }

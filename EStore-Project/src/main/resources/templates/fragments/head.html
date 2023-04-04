@@ -3,6 +3,11 @@
   <title>E Store - eCommerce HTML Template</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="eCommerce HTML Template Free Download" name="keywords">
+  <meta
+          id="csrf"
+          type="hidden"
+          th:name="${_csrf.headerName}"
+          th:value="${_csrf.token}" />
   <meta content="eCommerce HTML Template Free Download" name="description">
 
   <!-- Favicon -->
@@ -18,5 +23,5 @@
   <link href="lib/slick/slick-theme.css" rel="stylesheet">
 
   <!-- Template Stylesheet -->
-  <link href="css/style.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
 </head>

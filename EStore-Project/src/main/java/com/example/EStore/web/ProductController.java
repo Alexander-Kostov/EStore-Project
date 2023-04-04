@@ -1,11 +1,10 @@
 package com.example.EStore.web;
 
-import com.example.EStore.model.dto.ViewProductDTO;
+import com.example.EStore.model.views.ProductView;
 import com.example.EStore.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class ProductController {
     @GetMapping("/products")
     public String products(Model model) {
 
-        List<ViewProductDTO> allProductsViews = this.productService.getAllProducts();
+        List<ProductView> allProductsViews = this.productService.getAllProducts();
 
         model.addAttribute("ProductsViews", allProductsViews);
 

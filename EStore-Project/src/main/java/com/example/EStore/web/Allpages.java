@@ -17,12 +17,6 @@ public class Allpages {
         return "index";
     }
 
-    @GetMapping("/cart")
-    public String cart() {
-
-        return "cart";
-    }
-
     @GetMapping("/checkout")
     public String checkout() {
 

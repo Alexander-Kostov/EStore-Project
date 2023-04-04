@@ -2443,4 +2443,47 @@ h2 {
     width: 45px;
 }
 
+#price_on_product_details {
+    font-size: 20px;
+    text-decoration: none;
+    color: #FF6F61;
+}
+
+#size_for_product {
+    width: 36px;
+}
+
+#p_size_for_product{
+    font-size: 18px;
+}
+
+#price_for_product {
+    width: 34px;
+}
+
+#colour_heading_for_product {
+    width: 45px;
+}
+
+#input_for_product_colour{
+    padding-bottom: 3px;
+    font-size: 17px;
+}
+
+#star {
+    margin-right: 3px;
+    padding-top: 5px;
+}
+
+#delete-review-button {
+    margin-left: 6px;
+    margin-top: 3px;
+    font-size: 16px;
+}
+
+.my-first-div {
+    background-color: red;
+}
+
+
 
