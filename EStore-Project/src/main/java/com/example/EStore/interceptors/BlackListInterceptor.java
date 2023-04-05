@@ -3,6 +3,9 @@ package com.example.EStore.interceptors;
 import com.example.EStore.service.BlackListService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.boot.autoconfigure.security.StaticResourceLocation;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.View;
@@ -12,12 +15,12 @@ import java.util.*;
 
 @Component
 public class BlackListInterceptor implements HandlerInterceptor {
-    private ThymeleafViewResolver tlvr;
+    private ThymeleafViewResolver thymeleafViewResolver;
 
     private BlackListService service;
 
-    public BlackListInterceptor(ThymeleafViewResolver tlvr, BlackListService service) {
-        this.tlvr = tlvr;
+    public BlackListInterceptor(ThymeleafViewResolver thymeleafViewResolver, BlackListService service) {
+        this.thymeleafViewResolver = thymeleafViewResolver;
         this.service = service;
     }
 
@@ -28,8 +31,13 @@ public class BlackListInterceptor implements HandlerInterceptor {
             throws Exception {
         String ip = getIpAddressFromRequest(request);
 
-        if (service.isBlacklisted(ip)) {
-            View blockedView = tlvr.resolveViewName("blacklisted.html", Locale.getDefault());
+        RequestMatcher staticResourceRequestMatcher = PathRequest.toStaticResources().atCommonLocations();
+
+        RequestMatcher imageMatcher = PathRequest.toStaticResources().at(StaticResourceLocation.valueOf("/img/**"));
+
+        if (!staticResourceRequestMatcher.matches(request) && service.isBlacklisted(ip) && !imageMatcher.matches(request)) {
+
+            View blockedView = thymeleafViewResolver.resolveViewName("blacklisted.html", Locale.getDefault());
 
             if (blockedView != null) {
                 blockedView.render(Map.of(), request, response);
