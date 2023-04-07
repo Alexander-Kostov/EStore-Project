@@ -71,4 +71,8 @@ public class UserService {
     public UserEntity getUserByPrincipal(String email) {
         return this.userRepository.findUserByEmail(email).get();
     }
+
+    public Optional<UserEntity> getUserByEmail(String username) {
+        return this.userRepository.findUserByEmail(username);
+    }
 }

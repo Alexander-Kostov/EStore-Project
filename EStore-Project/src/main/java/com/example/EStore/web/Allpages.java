@@ -7,32 +7,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class Allpages {
 
-    @GetMapping("/")
-    public String home() {
-        return "index";
-    }
-
-    @GetMapping("/home")
-    public String homePage() {
-        return "index";
-    }
-
-    @GetMapping("/checkout")
-    public String checkout() {
-
-        return "checkout";
-    }
+//    @GetMapping("/")
+//    public String home() {
+//        return "index";
+//    }
+//
+//    @GetMapping("/home")
+//    public String homePage() {
+//        return "index";
+//    }
 
     @GetMapping("/my-account")
     public String myAccount() {
 
         return "my-account";
-    }
-
-    @GetMapping("/contact")
-    public String contact() {
-
-        return "contact";
     }
 
     @GetMapping("/wishlist")

@@ -8,9 +8,8 @@
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav mr-auto">
-                    <a th:href="@{/home}" class="nav-item nav-link">Home</a>
+                    <a th:href="@{/}" class="nav-item nav-link">Home</a>
                     <a th:href="@{/products}" class="nav-item nav-link">Products</a>
-                    <a th:href="@{/products-details}" class="nav-item nav-link">Product Detail</a>
                     <a sec:authorize="isAuthenticated()" th:href="@{/cart}" class="nav-item nav-link">Cart</a>
                     <a sec:authorize="isAuthenticated()" th:href="@{/checkout}" class="nav-item nav-link">Checkout</a>
                     <a sec:authorize="isAuthenticated()" th:href="@{/wishlist}" class="nav-item nav-link">Wishlist</a>

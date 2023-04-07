@@ -2482,8 +2482,36 @@ h2 {
 }
 
 .my-first-div {
-    background-color: #FF6F61;
+   display: inline-block;
+    text-align: center;
 }
 
+#blocked-heading {
+    font-size: 80px;
+    text-align: center;
+}
+
+.blocked-picture {
+    width: 500px;
+    height: 500px;
+    margin-left: 596px;
+}
+
+#empty-cart-div {
+    padding-bottom: 250px;
+    text-align: center;
+}
+
+#empty-cart-heading {
+    padding-bottom: 10px;
+}
+
+.dollar-span {
+    margin-right: -4px;
+}
+
+.invalid-quantity {
+    color: red;
+}
 
 

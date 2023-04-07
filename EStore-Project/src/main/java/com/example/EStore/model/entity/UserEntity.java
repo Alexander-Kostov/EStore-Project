@@ -21,9 +21,6 @@ public class UserEntity {
     private String address;
     private String mobileNumber;
 
-    @OneToMany
-    private List<ProductEntity> orders;
-
     @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRoleEntity> roles = new ArrayList<>();
 
@@ -69,15 +66,6 @@ public class UserEntity {
 
     public UserEntity setPassword(String password) {
         this.password = password;
-        return this;
-    }
-
-    public List<ProductEntity> getOrders() {
-        return orders;
-    }
-
-    public UserEntity setOrders(List<ProductEntity> basket) {
-        this.orders = basket;
         return this;
     }
 

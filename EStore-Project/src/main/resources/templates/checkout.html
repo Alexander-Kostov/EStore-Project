@@ -26,7 +26,37 @@
         <!-- Nav Bar End -->      
         
         <!-- Bottom Bar Start -->
-        <span th:replace="fragments/bottom-bar"></span>
+        <div class="bottom-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-md-3">
+                        <div class="logo">
+                            <a th:href="@{/}">
+                                <img src="/img/logo.png" alt="Logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="search">
+                            <input type="text" placeholder="Search">
+                            <button><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="userEntity">
+                            <a href="wishlist.html" class="btn wishlist">
+                                <i class="fa fa-heart"></i>
+                                <span>(0)</span>
+                            </a>
+                            <a th:href="@{/cart}" class="btn cart">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span th:text="|(${itemsNumber})|">(0)</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Bottom Bar End --> 
         
         <!-- Breadcrumb Start -->
@@ -43,7 +73,8 @@
         
         <!-- Checkout Start -->
         <div class="checkout">
-            <div class="container-fluid"> 
+            <div class="container-fluid">
+                <form th:action="@{/checkout}" th:method="POST">
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="checkout-inner">
@@ -77,6 +108,7 @@
                                             <option>Afghanistan</option>
                                             <option>Albania</option>
                                             <option>Algeria</option>
+                                            <option>Bulgaria</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
@@ -91,21 +123,8 @@
                                         <label>ZIP Code</label>
                                         <input class="form-control" type="text" placeholder="ZIP Code">
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="newaccount">
-                                            <label class="custom-control-label" for="newaccount">Create an account</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="shipto">
-                                            <label class="custom-control-label" for="shipto">Ship to different address</label>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
-
                             <div class="shipping-address">
                                 <h2>Shipping Address</h2>
                                 <div class="row">
@@ -158,7 +177,6 @@
                         <div class="checkout-inner">
                             <div class="checkout-summary">
                                 <h1>Cart Total</h1>
-                                <p>Product Name<span>$99</span></p>
                                 <p class="sub-total">Sub Total<span>$99</span></p>
                                 <p class="ship-cost">Shipping Cost<span>$1</span></p>
                                 <h2>Grand Total<span>$100</span></h2>
@@ -174,7 +192,7 @@
                                         </div>
                                         <div class="payment-content" id="payment-1-show">
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                                                A digital payment system that allows users to securely make online transactions with their bank account or credit card. Paypal is widely accepted by online retailers and merchants.
                                             </p>
                                         </div>
                                     </div>
@@ -185,7 +203,7 @@
                                         </div>
                                         <div class="payment-content" id="payment-2-show">
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                                                An online payment platform that allows businesses and individuals to send and receive payments globally. Payoneer provides various payment methods including international wire transfers, prepaid debit cards, and local bank transfers.
                                             </p>
                                         </div>
                                     </div>
@@ -196,7 +214,7 @@
                                         </div>
                                         <div class="payment-content" id="payment-3-show">
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                                                A traditional payment method where the buyer writes a check to the seller for the agreed amount. The seller can then deposit the check into their bank account for payment.
                                             </p>
                                         </div>
                                     </div>
@@ -207,7 +225,7 @@
                                         </div>
                                         <div class="payment-content" id="payment-4-show">
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                                                A method of transferring money directly from one bank account to another. Direct bank transfers are commonly used for large transactions and can take a few business days to complete.
                                             </p>
                                         </div>
                                     </div>
@@ -218,7 +236,7 @@
                                         </div>
                                         <div class="payment-content" id="payment-5-show">
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                                                A payment method where the buyer pays for the goods or services in cash when they are delivered to their doorstep. Cash on delivery is commonly used for online shopping.
                                             </p>
                                         </div>
                                     </div>
@@ -230,6 +248,7 @@
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
         <!-- Checkout End -->

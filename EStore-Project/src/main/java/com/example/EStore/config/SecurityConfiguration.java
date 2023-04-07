@@ -39,7 +39,7 @@ public class SecurityConfiguration {
                         "/css/**", "/js/**", "/lib/**", "/img/**").permitAll()
                 .requestMatchers("/", "/home", "/products", "/error", "/products-details/**", "/blacklisted/**").permitAll()
                 .requestMatchers("/users/login", "/users/register", "/users/login-error").anonymous()
-                .requestMatchers("/cart/product").authenticated()
+                .requestMatchers("/cart", "/wishlist", "/checkout").authenticated()
                 .requestMatchers("/product-add").hasRole(UserRoleEnum.MODERATOR.name())
                 .requestMatchers("/product-add").hasRole(UserRoleEnum.ADMIN.name())
                 .anyRequest().authenticated()

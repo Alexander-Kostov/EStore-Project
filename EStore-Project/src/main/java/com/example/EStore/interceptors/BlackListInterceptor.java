@@ -3,8 +3,8 @@ package com.example.EStore.interceptors;
 import com.example.EStore.service.BlackListService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.boot.autoconfigure.security.StaticResourceLocation;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -33,7 +33,7 @@ public class BlackListInterceptor implements HandlerInterceptor {
 
         RequestMatcher staticResourceRequestMatcher = PathRequest.toStaticResources().atCommonLocations();
 
-        RequestMatcher imageMatcher = PathRequest.toStaticResources().at(StaticResourceLocation.valueOf("/img/**"));
+        RequestMatcher imageMatcher = AntPathRequestMatcher.antMatcher("/img/**");
 
         if (!staticResourceRequestMatcher.matches(request) && service.isBlacklisted(ip) && !imageMatcher.matches(request)) {
 
