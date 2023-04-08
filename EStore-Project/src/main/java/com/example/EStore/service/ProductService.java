@@ -155,4 +155,8 @@ public class ProductService {
     public ProductEntity getProductById(Long productId) {
         return this.productRepository.findById(productId).get();
     }
+
+    public void removeProductById(Long id) {
+        this.productRepository.deleteById(id);
+    }
 }

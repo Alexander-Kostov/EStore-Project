@@ -2514,4 +2514,79 @@ h2 {
     color: red;
 }
 
+#billing-first-name-div {
+    padding-bottom: 7px;
+}
+
+#billing-first-name-input {
+    margin-bottom: 6px;
+}
+
+#billing-last-name-div {
+    padding-bottom: 7px;
+}
+
+#billing-last-name-input {
+    margin-bottom: 6px;
+}
+
+#billing-email-div {
+    padding-bottom: 7px;
+}
+
+#billing-email-input {
+    margin-bottom: 6px;
+}
+
+#billing-mobile-number-div {
+    padding-bottom: 7px;
+}
+
+#billing-mobile-number-input {
+    margin-bottom: 6px;
+}
+
+#billing-address-div {
+    padding-bottom: 7px;
+}
+
+#billing-address-input {
+    margin-bottom: 6px;
+}
+
+#billing-city-div {
+    padding-bottom: 7px;
+}
+
+#billing-city-input {
+    margin-bottom: 6px;
+}
+
+#billing-zip-code-div {
+    padding-bottom: 7px;
+}
+
+#billing-zip-code-input {
+    margin-bottom: 6px;
+}
+
+.span-for-errors-in-checkout {
+    color: red;
+    font-style: italic;
+    font-weight: 500;
+    font-family: cursive;
+}
+
+.my-account-text-format {
+    font-family: monospace;
+}
+
+.my-account-text-format-h4 {
+    font-size: 26px;
+}
+
+.ul-list-my-acc {
+    list-style: none;
+}
+
 

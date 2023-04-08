@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public class RegisterDTO {
-
     private Long id;
 
     @Size(min = 2, max = 20, message = "First Name should be between 2 and 20 symbols")
@@ -28,7 +27,7 @@ public class RegisterDTO {
     private String email;
 
     @NotBlank
-    @Size(min = 2, max = 30, message = "Please insert a valid email address")
+    @Size(min = 2, max = 30, message = "Please insert a valid address")
     private String address;
 
     @Size(min = 10)

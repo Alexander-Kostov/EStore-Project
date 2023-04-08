@@ -27,7 +27,37 @@
         <!-- Nav Bar End -->      
         
         <!-- Bottom Bar Start -->
-        <span th:replace="fragments/bottom-bar"></span>
+        <div class="bottom-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-md-3">
+                        <div class="logo">
+                            <a th:href="@{/}">
+                                <img src="/img/logo.png" alt="Logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="search">
+                            <input type="text" placeholder="Search">
+                            <button><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="userEntity">
+                            <a href="wishlist.html" class="btn wishlist">
+                                <i class="fa fa-heart"></i>
+                                <span>(0)</span>
+                            </a>
+                            <a th:href="@{/cart}" class="btn cart">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span th:text="|(${itemsNumber})|">(0)</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Bottom Bar End --> 
         
         <!-- Breadcrumb Start -->
@@ -59,9 +89,9 @@
                     <div class="col-md-9">
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="dashboard-tab" role="tabpanel" aria-labelledby="dashboard-nav">
-                                <h4>Dashboard</h4>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum quam ac mi viverra dictum. In efficitur ipsum diam, at dignissim lorem tempor in. Vivamus tempor hendrerit finibus. Nulla tristique viverra nisl, sit amet bibendum ante suscipit non. Praesent in faucibus tellus, sed gravida lacus. Vivamus eu diam eros. Aliquam et sapien eget arcu rhoncus scelerisque.
+                                <h4 class="my-account-text-format-h4">Dashboard</h4>
+                                <p class="my-account-text-format">
+                                    Your centralized hub for managing your account. Get an overview of your orders, payment methods, addresses, and easily access tools for managing your account settings. Stay up-to-date with important notifications and alerts about your account.Whether you're a frequent shopper or just getting started, the dashboard is an essential tool for managing your online account. So why wait? Start using the dashboard today and take control of your online shopping experience!
                                 </p> 
                             </div>
                             <div class="tab-pane fade" id="orders-tab" role="tabpanel" aria-labelledby="orders-nav">
@@ -107,10 +137,15 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="payment-tab" role="tabpanel" aria-labelledby="payment-nav">
-                                <h4>Payment Method</h4>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum quam ac mi viverra dictum. In efficitur ipsum diam, at dignissim lorem tempor in. Vivamus tempor hendrerit finibus. Nulla tristique viverra nisl, sit amet bibendum ante suscipit non. Praesent in faucibus tellus, sed gravida lacus. Vivamus eu diam eros. Aliquam et sapien eget arcu rhoncus scelerisque.
-                                </p> 
+                                <h4 class="my-account-text-format-h4">Payment Method</h4>
+                                <p class="my-account-text-format">
+                                    The payment method section of your dashboard provides additional information of the payment options that this website provides.
+                                    You can view all the payment methods that are currently available at the checkout process of your purchase.
+                                    Additionally, we take your payment security seriously and have implemented features such as encryption and fraud detection
+                                    to keep your payment information safe.
+                                </p>
+
+
                             </div>
                             <div class="tab-pane fade" id="address-tab" role="tabpanel" aria-labelledby="address-nav">
                                 <h4>Address</h4>
