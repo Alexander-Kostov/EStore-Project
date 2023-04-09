@@ -78,8 +78,8 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
-                            <a class="nav-link active" id="dashboard-nav" data-toggle="pill" href="#dashboard-tab" role="tab"><i class="fa fa-tachometer-alt"></i>Dashboard</a>
-                            <a class="nav-link" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab"><i class="fa fa-shopping-bag"></i>Orders</a>
+                            <a class="nav-link" id="dashboard-nav" data-toggle="pill" href="#dashboard-tab" role="tab"><i class="fa fa-tachometer-alt"></i>Dashboard</a>
+                            <a class="nav-link active" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab"><i class="fa fa-shopping-bag"></i>Orders</a>
                             <a class="nav-link" id="payment-nav" data-toggle="pill" href="#payment-tab" role="tab"><i class="fa fa-credit-card"></i>Payment Method</a>
                             <a class="nav-link" id="address-nav" data-toggle="pill" href="#address-tab" role="tab"><i class="fa fa-map-marker-alt"></i>address</a>
 <!--                            <a class="nav-link" href="index.html"><i class="fa fa-sign-out-alt"></i>Logout</a>-->
@@ -88,13 +88,13 @@
                     </div>
                     <div class="col-md-9">
                         <div class="tab-content">
-                            <div class="tab-pane fade show active" id="dashboard-tab" role="tabpanel" aria-labelledby="dashboard-nav">
+                            <div class="tab-pane fade" id="dashboard-tab" role="tabpanel" aria-labelledby="dashboard-nav">
                                 <h4 class="my-account-text-format-h4">Dashboard</h4>
                                 <p class="my-account-text-format">
                                     Your centralized hub for managing your account. Get an overview of your orders, payment methods, addresses, and easily access tools for managing your account settings. Stay up-to-date with important notifications and alerts about your account.Whether you're a frequent shopper or just getting started, the dashboard is an essential tool for managing your online account. So why wait? Start using the dashboard today and take control of your online shopping experience!
                                 </p> 
                             </div>
-                            <div class="tab-pane fade" id="orders-tab" role="tabpanel" aria-labelledby="orders-nav">
+                            <div class="tab-pane fade show active" id="orders-tab" role="tabpanel" aria-labelledby="orders-nav">
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
                                         <thead class="thead-dark">
@@ -107,30 +107,20 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Product Name</td>
-                                                <td>01 Jan 2020</td>
-                                                <td>$99</td>
-                                                <td>Approved</td>
-                                                <td><button class="btn">View</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Product Name</td>
-                                                <td>01 Jan 2020</td>
-                                                <td>$99</td>
-                                                <td>Approved</td>
-                                                <td><button class="btn">View</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Product Name</td>
-                                                <td>01 Jan 2020</td>
-                                                <td>$99</td>
-                                                <td>Approved</td>
-                                                <td><button class="btn">View</button></td>
+                                        <tbody th:each="order : ${customerOrders}">
+                                            <tr class="my-account-tr-format">
+                                                <td th:text="${order.getId()}">1</td>
+                                                <td>
+                                                <span th:each="item, iter :${order.getItems()}">
+                                                    <span th:text="${item.getName()}"></span>
+                                                    <span th:if="${not #lists.isEmpty(order.getItems()) and iter.index + 1 lt #lists.size(order.getItems())}">&</span>
+                                                </span>
+                                                </td>
+                                                <td th:text="${order.getLocalDate()}">01 Jan 2020</td>
+                                                <td th:text="${order.getTotalPrice()} + '$'">
+                                                </td>
+                                                <td th:text="${order.getStatus()}">Approved</td>
+                                                <td th:text="${order.getAction()}"></td>
                                             </tr>
                                         </tbody>
                                     </table>

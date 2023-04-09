@@ -188,9 +188,9 @@
                         <div class="checkout-inner">
                             <div class="checkout-summary">
                                 <h1>Cart Total</h1>
-                                <p class="sub-total">Sub Total<span>$99</span></p>
-                                <p class="ship-cost">Shipping Cost<span>$1</span></p>
-                                <h2>Grand Total<span>$100</span></h2>
+                                <p class="sub-total">Sub Total<span th:text="${subTotal} + '$'">$99</span></p>
+                                <p class="ship-cost">Shipping Cost<span>$5</span></p>
+                                <h2>Grand Total<span th:text="${totalPrice} + '$'">$100</span></h2>
                             </div>
 
                             <div class="checkout-payment">
@@ -250,6 +250,7 @@
                                                 A payment method where the buyer pays for the goods or services in cash when they are delivered to their doorstep. Cash on delivery is commonly used for online shopping.
                                             </p>
                                         </div>
+                                         <span class="span-for-errors-in-checkout" th:if="${#fields.hasErrors('paymentMethod')}" th:errors="*{paymentMethod}"></span>
                                     </div>
                                 </div>
                                 <div class="checkout-btn">
@@ -309,7 +310,7 @@
                         <div class="footer-widget">
                             <h2>Purchase Info</h2>
                             <ul>
-                                <li><a href="#">Pyament Policy</a></li>
+                                <li><a href="#">Payment Policy</a></li>
                                 <li><a href="#">Shipping Policy</a></li>
                                 <li><a href="#">Return Policy</a></li>
                             </ul>

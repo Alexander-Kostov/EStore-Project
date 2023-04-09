@@ -10,7 +10,6 @@ public class BlackListService {
 
         return ipAddress.startsWith("102") || ipAddress.startsWith("129") || ipAddress.startsWith("196");
 
-
     }
 
 }

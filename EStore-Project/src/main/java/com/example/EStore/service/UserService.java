@@ -75,4 +75,8 @@ public class UserService {
     public Optional<UserEntity> getUserByEmail(String username) {
         return this.userRepository.findUserByEmail(username);
     }
+
+    public List<UserEntity> getAllAccounts() {
+        return this.userRepository.findAll();
+    }
 }
