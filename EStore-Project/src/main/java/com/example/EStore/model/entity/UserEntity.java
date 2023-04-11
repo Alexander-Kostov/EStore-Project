@@ -21,7 +21,7 @@ public class UserEntity {
     private String address;
     private String mobileNumber;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private List<UserRoleEntity> roles = new ArrayList<>();
 
     public long getId() {

@@ -44,6 +44,7 @@ public class BlackListInterceptor implements HandlerInterceptor {
             }
             return false;
         }
+
         return true;
 
     }

@@ -26,7 +26,7 @@
                     <a sec:authorize="!isAuthenticated()" th:href="@{/users/register}" class="nav-item nav-link">Register</a>
                     <a sec:authorize="isAuthenticated()" th:href="@{/contact}" class="nav-item nav-link">Contact Us</a>
                     <a sec:authorize="hasRole('ADMIN')" th:href="@{/product-add}" class="nav-item nav-link">Add Product</a>
-                    <a sec:authorize="hasAnyRole('ADMIN', 'MODERATOR')" th:href="@{/accounts-manager}" class="nav-item nav-link">Accounts Manager</a>
+                    <a sec:authorize="hasAnyRole('ADMIN', 'MODERATOR')" th:href="@{/accounts-manager}" class="nav-item nav-link">Account Manager</a>
                     <form th:method="post" th:action="@{/users/logout}">
                         <span sec:authorize="isAuthenticated()">
 <!--                          <a href="/users/logout" class="nav-item nav-link" type="submit">Logout</a>-->

@@ -12,7 +12,7 @@ public class ReviewEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(length = 1000, nullable = false)
     private String text;
 
     private String username;

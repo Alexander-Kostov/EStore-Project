@@ -41,7 +41,7 @@ public class SecurityConfiguration {
                 .requestMatchers("/users/login", "/users/register", "/users/login-error").anonymous()
                 .requestMatchers("/cart", "/wishlist", "/checkout").authenticated()
                 .requestMatchers("/product-add").hasRole(UserRoleEnum.MODERATOR.name())
-                .requestMatchers("/product-add").hasRole(UserRoleEnum.ADMIN.name())
+                .requestMatchers("/product-add", "/accounts-manager/**").hasRole(UserRoleEnum.ADMIN.name())
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

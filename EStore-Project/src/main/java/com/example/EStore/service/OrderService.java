@@ -66,5 +66,19 @@ public class OrderService {
     }
 
 
+    public void changeAllActions() {
+        List<OrderEntity> allOrders = this.orderRepository.findAll();
 
+        for (OrderEntity order : allOrders) {
+           if(order.getAction() == OrderActionEnum.InStorage){
+               order.setAction(OrderActionEnum.SHIPPED);
+           }else if(order.getAction() == OrderActionEnum.SHIPPED) {
+               order.setAction(OrderActionEnum.DELIVERED);
+           }else {
+               order.setAction(OrderActionEnum.InStorage);
+           }
+        }
+
+        this.orderRepository.saveAll(allOrders);
+    }
 }

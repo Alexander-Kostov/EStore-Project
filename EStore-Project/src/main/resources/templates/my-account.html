@@ -79,10 +79,10 @@
                     <div class="col-md-3">
                         <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
                             <a class="nav-link" id="dashboard-nav" data-toggle="pill" href="#dashboard-tab" role="tab"><i class="fa fa-tachometer-alt"></i>Dashboard</a>
-                            <a class="nav-link active" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab"><i class="fa fa-shopping-bag"></i>Orders</a>
+                            <a class="nav-link" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab"><i class="fa fa-shopping-bag"></i> Orders</a>
                             <a class="nav-link" id="payment-nav" data-toggle="pill" href="#payment-tab" role="tab"><i class="fa fa-credit-card"></i>Payment Method</a>
-                            <a class="nav-link" id="address-nav" data-toggle="pill" href="#address-tab" role="tab"><i class="fa fa-map-marker-alt"></i>address</a>
-<!--                            <a class="nav-link" href="index.html"><i class="fa fa-sign-out-alt"></i>Logout</a>-->
+                            <a class="nav-link" id="address-nav" data-toggle="pill" href="#address-tab" role="tab"><i class="fa fa-map-marker-alt"></i> Address</a>
+                            <a class="nav-link active" id="account-nav" data-toggle="pill" href="#account-tab" role="tab"><i class="fa fa-user"></i>Account Details</a>
 
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                                     Your centralized hub for managing your account. Get an overview of your orders, payment methods, addresses, and easily access tools for managing your account settings. Stay up-to-date with important notifications and alerts about your account.Whether you're a frequent shopper or just getting started, the dashboard is an essential tool for managing your online account. So why wait? Start using the dashboard today and take control of your online shopping experience!
                                 </p> 
                             </div>
-                            <div class="tab-pane fade show active" id="orders-tab" role="tabpanel" aria-labelledby="orders-nav">
+                            <div class="tab-pane fade" id="orders-tab" role="tabpanel" aria-labelledby="orders-nav">
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
                                         <thead class="thead-dark">
@@ -154,44 +154,45 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
+                            <div class="tab-pane fade show active" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
                                 <h4>Account Details</h4>
+                                <form th:action="@{/my-account/edit/details}" th:method="patch" th:object="${changeAcc}">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="First Name">
+                                        <input id="newFirstName" class="form-control" th:field="*{newFirstName}" name="newFirstName" type="text" placeholder="First Name">
+                                        <small class="errors-for-update-acc" th:if="${#fields.hasErrors('newFirstName')}" th:errors="*{newFirstName}">
+                                        </small>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <input id="newLastName" class="form-control" th:field="*{newLastName}" name="newLastName" type="text" placeholder="Last Name">
+                                        <small class="errors-for-update-acc" th:if="${#fields.hasErrors('newLastName')}" th:errors="*{newLastName}">
+                                        </small>
                                     </div>
                                     <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Last Name">
+                                        <input id="newMobileNumber" class="form-control" th:field="*{newMobileNumber}" type="text" placeholder="+359883769429" pattern="^\+?\d{10,12}$" required>
+                                        <small class="errors-for-update-acc" th:if="${#fields.hasErrors('newMobileNumber')}" th:errors="*{newMobileNumber}">
+                                        </small>
                                     </div>
+
                                     <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Mobile">
+                                        <input id="newEmail" class="form-control" th:field="*{newEmail}" type="text" placeholder="User@gmail.com">
+                                        <small class="errors-for-update-acc" th:if="${#fields.hasErrors('newEmail')}" th:errors="*{newEmail}">
+                                        </small>
                                     </div>
-                                    <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Email">
-                                    </div>
+
                                     <div class="col-md-12">
-                                        <input class="form-control" type="text" placeholder="Address">
+                                        <input id="newAddress" class="form-control" th:field="*{newAddress}" type="text" placeholder="22th Alvarado Street">
+                                        <small class="errors-for-update-acc" th:if="${#fields.hasErrors('newAddress')}" th:errors="*{newAddress}">
+                                        </small>
                                     </div>
+
                                     <div class="col-md-12">
-                                        <button class="btn">Update Account</button>
+                                        <button id="buttonForUpdateAcc" type="submit" class="btn">Update Account</button>
                                         <br><br>
                                     </div>
                                 </div>
-                                <h4>Password change</h4>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <input class="form-control" type="password" placeholder="Current Password">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="New Password">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Confirm Password">
-                                    </div>
-                                    <div class="col-md-12">
-                                        <button class="btn">Save Changes</button>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -245,7 +246,7 @@
                         <div class="footer-widget">
                             <h2>Purchase Info</h2>
                             <ul>
-                                <li><a href="#">Pyament Policy</a></li>
+                                <li><a href="#">Payment Policy</a></li>
                                 <li><a href="#">Shipping Policy</a></li>
                                 <li><a href="#">Return Policy</a></li>
                             </ul>

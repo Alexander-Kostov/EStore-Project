@@ -64,6 +64,7 @@
                                                 <th>Last Name</th>
                                                 <th>Address</th>
                                                 <th>Mobile Number</th>
+                                                <th>Current Role</th>
                                                 <th>Change Authority</th>
                                             </tr>
                                         </thead>
@@ -75,7 +76,29 @@
                                                 <td th:text="${account.getLastName()}">01 Jan 2020</td>
                                                 <td th:text="${account.getAddress()}"></td>
                                                 <td th:text="${account.getMobileNumber()}">Approved</td>
-                                                <td th:text="${'Listing role'}"></td>
+                                                <td>
+                                                    <span th:if="${account.getRoles().size() == 2}">
+                                                        ADMIN
+                                                    </span>
+                                                    <span th:if="${account.getRoles().size() == 1}">
+                                                        MODERATOR
+                                                    </span>
+                                                    <th:block th:if="${account.getRoles().isEmpty()}">
+                                                        <span>USER</span>
+                                                    </th:block>
+
+                                                </td>
+                                                <td>
+                                                    <form th:action="@{/accounts-manager/edit/{id}(id = ${account.getId()})}" th:method="patch">
+                                                        <thblock th:object="${changeAuthorityDTO}">
+                                                    <select th:field="*{newRole}" name="newRole" id="newRole">
+                                                    <option value="USER" selected>USER</option>
+                                                    <option value="MODERATOR">MODERATOR</option>
+                                                    </select>
+                                                        </thblock>
+                                                        <button type="submit">Change</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>

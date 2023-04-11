@@ -12,6 +12,7 @@ public class RegisterDTO {
     @NotBlank
     private String firstName;
     @Size(min = 2, max = 20, message = "Last Name should be between 2 and 20 symbols")
+    @NotBlank
     private String lastName;
     @NotBlank(message = "")
     @Size(min = 5, max = 20, message = "Password should be at least 5 symbols long")

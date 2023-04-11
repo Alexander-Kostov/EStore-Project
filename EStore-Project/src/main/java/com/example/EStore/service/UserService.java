@@ -1,21 +1,17 @@
 package com.example.EStore.service;
 
+import com.example.EStore.model.dto.ChangeUserAuthorityDTO;
 import com.example.EStore.model.dto.RegisterDTO;
 import com.example.EStore.model.entity.UserEntity;
 import com.example.EStore.model.entity.UserRoleEntity;
+import com.example.EStore.model.enums.UserRoleEnum;
 import com.example.EStore.repository.UserRepository;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Value;
+import com.example.EStore.repository.UserRoleRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.context.SecurityContextHolderStrategy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,11 +25,14 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
     private UserDetailsService userDetailsService;
 
+    private UserRoleRepository userRoleRepository;
+
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder,
-                       UserDetailsService userDetailsService) {
+                       UserDetailsService userDetailsService, UserRoleRepository userRoleRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userDetailsService = userDetailsService;
+        this.userRoleRepository = userRoleRepository;
     }
 
     public void registerUser(RegisterDTO registerDTO,
@@ -78,5 +77,22 @@ public class UserService {
 
     public List<UserEntity> getAllAccounts() {
         return this.userRepository.findAll();
+    }
+
+    public void updateRole(Long id, ChangeUserAuthorityDTO changeUserAuthorityDTO) {
+        Optional<UserEntity> userToBeUpdated = this.userRepository.findById(id);
+        UserEntity user = userToBeUpdated.get();
+
+        List<UserRoleEntity> roles = user.getRoles();
+
+        if (roles.isEmpty() && changeUserAuthorityDTO.getNewRole().equals("MODERATOR")) {
+            user.setRoles(this.userRoleRepository.findByRole(UserRoleEnum.MODERATOR));
+        }
+
+        if (changeUserAuthorityDTO.getNewRole().equals("USER") && !roles.isEmpty()) {
+            roles.clear();
+        }
+
+        this.userRepository.saveAndFlush(user);
     }
 }
