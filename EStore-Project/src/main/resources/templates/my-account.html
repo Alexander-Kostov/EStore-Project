@@ -78,12 +78,10 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link" th:classappend="${!redirectedFromOrder} ? active : ''" id="account-nav" data-toggle="pill" href="#account-tab" role="tab"><i class="fa fa-user"></i>Account Details</a>
                             <a class="nav-link" id="dashboard-nav" data-toggle="pill" href="#dashboard-tab" role="tab"><i class="fa fa-tachometer-alt"></i>Dashboard</a>
-                            <a class="nav-link" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab"><i class="fa fa-shopping-bag"></i> Orders</a>
+                            <a class="nav-link" th:classappend="${redirectedFromOrder} ? active : ''" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab"><i class="fa fa-shopping-bag"></i> Orders</a>
                             <a class="nav-link" id="payment-nav" data-toggle="pill" href="#payment-tab" role="tab"><i class="fa fa-credit-card"></i>Payment Method</a>
-                            <a class="nav-link" id="address-nav" data-toggle="pill" href="#address-tab" role="tab"><i class="fa fa-map-marker-alt"></i> Address</a>
-                            <a class="nav-link active" id="account-nav" data-toggle="pill" href="#account-tab" role="tab"><i class="fa fa-user"></i>Account Details</a>
-
                         </div>
                     </div>
                     <div class="col-md-9">
@@ -94,9 +92,14 @@
                                     Your centralized hub for managing your account. Get an overview of your orders, payment methods, addresses, and easily access tools for managing your account settings. Stay up-to-date with important notifications and alerts about your account.Whether you're a frequent shopper or just getting started, the dashboard is an essential tool for managing your online account. So why wait? Start using the dashboard today and take control of your online shopping experience!
                                 </p> 
                             </div>
-                            <div class="tab-pane fade" id="orders-tab" role="tabpanel" aria-labelledby="orders-nav">
+                            <div class="tab-pane fade" th:classappend="${redirectedFromOrder} ? 'show active' : ''" id="orders-tab" role="tabpanel" aria-labelledby="orders-nav">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered">
+                                    <div th:if="${customerOrders.size() == 0}">
+                                        <h2 class="empty-order-queue">Your orders are as empty as a Black Friday sale bin!</h2>
+                                        <h2 class="empty-order-queue">It looks like it's time for some shopping therapy.</h2>
+                                        <p id="paragraphForGoBackShopping">start from <a th:href="@{/products}">here</a> :)</p>
+                                    </div>
+                                    <table class="table table-bordered" th:if="${customerOrders.size() != 0}">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>No</th>
@@ -135,26 +138,9 @@
                                     to keep your payment information safe.
                                 </p>
 
+                            </div>
 
-                            </div>
-                            <div class="tab-pane fade" id="address-tab" role="tabpanel" aria-labelledby="address-nav">
-                                <h4>Address</h4>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h5>Payment Address</h5>
-                                        <p>123 Payment Street, Los Angeles, CA</p>
-                                        <p>Mobile: 012-345-6789</p>
-                                        <button class="btn">Edit Address</button>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h5>Shipping Address</h5>
-                                        <p>123 Shipping Street, Los Angeles, CA</p>
-                                        <p>Mobile: 012-345-6789</p>
-                                        <button class="btn">Edit Address</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade show active" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
+                            <div class="tab-pane fade" th:classappend="${!redirectedFromOrder} ? 'show active' : ''" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
                                 <h4>Account Details</h4>
                                 <form th:action="@{/my-account/edit/details}" th:method="patch" th:object="${changeAcc}">
                                 <div class="row">
@@ -190,6 +176,10 @@
                                     <div class="col-md-12">
                                         <button id="buttonForUpdateAcc" type="submit" class="btn">Update Account</button>
                                         <br><br>
+                                    </div>
+
+                                    <div th:if="${successMessage}" role="alert">
+                                        <p class="success-acc-change-text" th:text="${successMessage}"></p>
                                     </div>
                                 </div>
                                 </form>

@@ -56,7 +56,9 @@ public class CheckoutController {
     }
 
     @PostMapping("/checkout")
-    public String checkout(@Valid CheckoutDTO checkoutDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails principal) {
+    public String checkout(@Valid CheckoutDTO checkoutDTO, BindingResult bindingResult,
+                           RedirectAttributes redirectAttributes,
+                           @AuthenticationPrincipal UserDetails principal) {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("checkoutDTO", checkoutDTO);
@@ -69,7 +71,9 @@ public class CheckoutController {
 
         List<CartItemEntity> allCartItemsForCurrentUser = this.cartService.getAllCartItemsForCurrentUser(customer);
 
-        this.orderService.addOrderForCurrentCustomer(customer, allCartItemsForCurrentUser);
+        this.orderService.addOrderForCurrentCustomer(customer);
+
+        redirectAttributes.addAttribute("redirectedFromOrder", true);
 
         return "redirect:my-account";
     }

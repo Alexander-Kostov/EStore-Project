@@ -95,4 +95,8 @@ public class UserService {
 
         this.userRepository.saveAndFlush(user);
     }
+
+    public void saveNewUserChanges(UserEntity userWithChanges) {
+        this.userRepository.save(userWithChanges);
+    }
 }

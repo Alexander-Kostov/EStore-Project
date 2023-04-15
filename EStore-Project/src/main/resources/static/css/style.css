@@ -2630,5 +2630,49 @@ h2 {
     margin-top: 10px;
 }
 
+.success-acc-change-text {
+    font-family: monospace;
+    font-style: italic;
+    padding-left: 20px;
+    font-size: 18px;
+    color: mediumseagreen;
+}
+
+.empty-order-queue {
+    text-align: center;
+}
+
+#paragraphForGoBackShopping{
+    padding-top: 47px;
+    padding-left: 858px;
+    margin-top: 30px;
+    font-size: 23px;
+    font-family: 'Source Code Pro', monospace;
+}
+
+.img-closed-store {
+    width: 66%;
+    text-align: center;
+    margin-left: 109px;
+    transform: rotate(9deg);
+    margin-top: -94px;
+}
+
+.div-img-closed-store {
+    text-align: center;
+}
+
+.h2-closed-store {
+    text-align: center;
+    font-size: 49px;
+    padding-top: 40px;
+}
+
+.h2-closed-store-subheading {
+    text-align: center;
+    font-size: 45px;
+    padding-top: 18px;
+}
+
 
 

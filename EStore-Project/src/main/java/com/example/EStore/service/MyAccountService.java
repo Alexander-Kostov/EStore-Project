@@ -21,7 +21,6 @@ public class MyAccountService {
 
         this.userService.saveNewUserChanges(userWithChanges);
 
-
     }
 
     public UserEntity applyChangesFromDTOToUserEntity(ChangeAccountDetailsDTO changeAccountDetailsDTO, UserEntity userEntity) {

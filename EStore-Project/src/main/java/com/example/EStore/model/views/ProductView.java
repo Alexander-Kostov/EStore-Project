@@ -2,7 +2,7 @@ package com.example.EStore.model.views;
 
 public class ProductView {
 
-    private long id;
+    private Long id;
 
     private String name;
 
@@ -12,11 +12,11 @@ public class ProductView {
 
     private String specifications;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public ProductView setId(long id) {
+    public ProductView setId(Long id) {
         this.id = id;
         return this;
     }

@@ -12,13 +12,17 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+    @Column(nullable = false)
     private String firstName;
-
+    @Column(nullable = false)
     private String lastName;
+    @Column(nullable = false)
     private String password;
+    @Column(unique = true, nullable = false)
     private String email;
+    @Column(nullable = false)
     private String address;
+    @Column(nullable = false)
     private String mobileNumber;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)

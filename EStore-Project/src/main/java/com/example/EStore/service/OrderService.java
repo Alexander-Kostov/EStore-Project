@@ -32,7 +32,7 @@ public class OrderService {
         this.productRepository = productRepository;
     }
 
-    public void addOrderForCurrentCustomer(UserEntity customer, List<CartItemEntity> allCartItemsForCurrentUser) {
+    public void addOrderForCurrentCustomer(UserEntity customer) {
 
         List<OrderedProductEntity> allOrderedItems = this.orderedProductRepository.findByCustomerId(customer.getId());
 
@@ -56,12 +56,11 @@ public class OrderService {
                 .setTotalPrice(totalPrice);
 
         this.orderRepository.save(order);
-
         this.cartRepo.deleteAll();
         this.orderedProductRepository.deleteAll();
     }
 
-    private ProductEntity getProductsMatchingOrderedItems(OrderedProductEntity orderedProduct) {
+    public ProductEntity getProductsMatchingOrderedItems(OrderedProductEntity orderedProduct) {
         return this.productRepository.findById(orderedProduct.getProduct().getId()).get();
     }
 

@@ -1,7 +1,7 @@
 package com.example.EStore.config;
 
 import com.example.EStore.interceptors.BlackListInterceptor;
-import com.example.EStore.interceptors.ComingSoonInterceptor;
+import com.example.EStore.interceptors.ShopClosedInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -10,17 +10,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class InterceptorConfiguration implements WebMvcConfigurer {
     private BlackListInterceptor ipBlacklistInterceptor;
 
-    private ComingSoonInterceptor comingSoonInterceptor;
+    private ShopClosedInterceptor shopClosedInterceptor;
 
-    public InterceptorConfiguration(BlackListInterceptor blacklist, ComingSoonInterceptor comingSoonInterceptor) {
+    public InterceptorConfiguration(BlackListInterceptor blacklist, ShopClosedInterceptor shopClosedInterceptor) {
         this.ipBlacklistInterceptor = blacklist;
-        this.comingSoonInterceptor = comingSoonInterceptor;
+        this.shopClosedInterceptor = shopClosedInterceptor;
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(ipBlacklistInterceptor);
-        registry.addInterceptor(comingSoonInterceptor);
+        registry.addInterceptor(shopClosedInterceptor);
         WebMvcConfigurer.super.addInterceptors(registry);
     }
 

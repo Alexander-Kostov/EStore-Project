@@ -1,9 +1,6 @@
 package com.example.EStore.model.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public class CheckoutDTO {
     @NotBlank(message = "First name cannot be empty!")
@@ -29,7 +26,6 @@ public class CheckoutDTO {
     private int zipCode;
     @NotNull(message = "You must select payment method!")
     private String paymentMethod;
-
 
     public String getFirstName() {
         return firstName;

@@ -3,8 +3,11 @@ package com.example.EStore.web;
 import com.example.EStore.model.dto.ChangeAccountDetailsDTO;
 import com.example.EStore.model.entity.*;
 import com.example.EStore.repository.OrderRepository;
+import com.example.EStore.service.MyAccountService;
 import com.example.EStore.service.ShoppingCartService;
 import com.example.EStore.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,14 +29,17 @@ public class MyAccountController {
 
     private OrderRepository orderRepository;
 
-    public MyAccountController(UserService userService, ShoppingCartService cartService, OrderRepository orderRepository) {
+    private MyAccountService myAccountService;
+
+    public MyAccountController(UserService userService, ShoppingCartService cartService, OrderRepository orderRepository, MyAccountService myAccountService) {
         this.userService = userService;
         this.cartService = cartService;
         this.orderRepository = orderRepository;
+        this.myAccountService = myAccountService;
     }
 
     @GetMapping("/my-account")
-    public String myAccount(Model model, @AuthenticationPrincipal UserDetails principal) {
+    public String myAccount(Model model, @AuthenticationPrincipal UserDetails principal, RedirectAttributes redirectAttributes, HttpServletRequest request) {
 
         UserEntity customer = this.userService.getUserByPrincipal(principal.getUsername());
         List<CartItemEntity> allCartItemsForCurrentUser = this.cartService.getAllCartItemsForCurrentUser(customer);
@@ -46,6 +52,21 @@ public class MyAccountController {
             model.addAttribute("changeAcc", new ChangeAccountDetailsDTO());
         }
 
+        if (redirectAttributes.containsAttribute("successMessage")) {
+            model.addAttribute("successMessage", redirectAttributes.getAttribute("successMessage"));
+        }
+
+        String referer = request.getHeader("referer");
+
+        if(referer != null) {
+            if(referer.contains("/checkout")) {
+                model.addAttribute("redirectedFromOrder", true);
+            }else {
+                model.addAttribute("redirectedFromOrder", false);
+            }
+        }
+
+        System.out.println();
 
         return "my-account";
     }
@@ -53,7 +74,8 @@ public class MyAccountController {
     @PatchMapping("/my-account/edit/details")
     public String myAccountChangeDetails(@Valid ChangeAccountDetailsDTO changeAccountDetailsDTO,
                                          BindingResult bindingResult,
-                                         RedirectAttributes redirectAttributes) {
+                                         RedirectAttributes redirectAttributes,
+                                         @AuthenticationPrincipal UserDetails principal) {
 
         if(bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("changeAcc", changeAccountDetailsDTO);
@@ -62,8 +84,10 @@ public class MyAccountController {
             return "redirect:/my-account";
         }
 
+        this.myAccountService.editAccountDetails(changeAccountDetailsDTO, principal);
 
+        redirectAttributes.addFlashAttribute("successMessage", "Changes were made successfully!");
 
-        return "redirect:/";
+        return "redirect:/my-account";
     }
 }
