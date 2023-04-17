@@ -31,7 +31,7 @@ public class WishListController {
         List<CartItemEntity> allCartItemsForCurrentUser = this.cartService.getAllCartItemsForCurrentUser(customer);
         model.addAttribute("itemsNumber", allCartItemsForCurrentUser.size());
 
-        return "wishlist";
+        return "coming-soon";
     }
 
 
