@@ -16,7 +16,7 @@ public class ShopClosedInterceptor implements HandlerInterceptor {
         String requestURI = request.getRequestURI();
         if (requestURI.equals("/products")) {
             LocalTime now = LocalTime.now();
-            if (now.isAfter(LocalTime.of(23,59,59)) || now.isBefore(LocalTime.of(10, 59, 59))) {
+            if (now.isAfter(LocalTime.of(23,59,59)) || now.isBefore(LocalTime.of(7, 59, 59))) {
                 response.sendRedirect("/closed");
             }
             return true;
